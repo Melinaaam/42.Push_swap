@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_and_swap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:44:53 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/10 14:26:29 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:43:22 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	ft_pa(t_list **a, t_list **b)
+void	ft_pa(t_pslist **a, t_pslist **b)
 {
-	t_list	*temp;
+	t_pslist	*temp;
 
 	if (*b == NULL)
 		return ;
@@ -26,9 +26,9 @@ void	ft_pa(t_list **a, t_list **b)
 	ft_printf ("pa\n");
 }
 
-void	ft_pb(t_list **a, t_list **b)
+void	ft_pb(t_pslist **a, t_pslist **b)
 {
-	t_list	*temp;
+	t_pslist	*temp;
 
 	if (*a == NULL)
 		return ;
@@ -39,9 +39,9 @@ void	ft_pb(t_list **a, t_list **b)
 	ft_printf ("pb\n");
 }
 
-void	ft_sa(t_list **a)
+void	ft_sa(t_pslist **a)
 {
-	t_list	*temp;
+	t_pslist	*temp;
 
 	if (a == NULL || *a == NULL || (*a)->next == NULL)
 		return ;
@@ -52,9 +52,9 @@ void	ft_sa(t_list **a)
 	ft_printf ("sa\n");
 }
 
-void	ft_sb(t_list **b)
+void	ft_sb(t_pslist **b)
 {
-	t_list	*temp;
+	t_pslist	*temp;
 
 	if (b == NULL || *b == NULL || (*b)->next == NULL)
 		return ;
@@ -65,7 +65,7 @@ void	ft_sb(t_list **b)
 	ft_printf ("sb\n");
 }
 
-void	ft_ss(t_list **a, t_list **b)
+void	ft_ss(t_pslist **a, t_pslist **b)
 {
 	ft_sa(a);
 	ft_sb(b);

@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/12 18:24:59 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:49:31 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	free_split(char **split)
 	free (split);
 }
 
-int	is_double(t_list *a, int nb)
+int	is_double(t_pslist *a, int *nb)
 {
-	t_list	*head;
+	t_pslist	*head;
 
 	if (!a)
 		return (0);
 	head = a;
 	while (head != NULL)
 	{
-		// ft_printf("list elem [%d] VS [%d]\n", *head->nb, nb);
-		if (*head->nb == nb)
+		//ft_printf("list elem [%d] VS [%d]\n", *head->nb, nb);
+		if (head->content == nb)
 			return (1);
 		head = head->next;
 	}
@@ -45,6 +45,7 @@ int	is_double(t_list *a, int nb)
 
 int	is_numeric(char *str)
 {
+	ft_printf("is_numeric ok\n");
 	int	i;
 
 	i = 0;
@@ -59,72 +60,79 @@ int	is_numeric(char *str)
 	return (0);
 }
 
-static t_list *ft_new_node(int *nb)
+static t_pslist *ft_new_node(int *number)
 {
-	t_list	*list;
+	ft_printf("ft_new_node OK\n");
+	t_pslist	*list;
 
-	list = (t_list *)malloc(sizeof(t_list));
+	list = (t_pslist *)malloc(sizeof(t_pslist));
 	if (list == NULL)
 		return(NULL);
-	list->nb = nb;
+	list->content = number;
 	list->next = NULL;
 	return(list);
 }
 
-int	check_stack(t_list **a, char **split_args)
+int	check_stack(t_pslist **a, char **args)
 {
-	int		*num;
-	int		j;
-	t_list	*new_node;
+	ft_printf("check_stack ok\n");
+	int			num;
+	int			j;
+	t_pslist		*new_node;
 
 	j = 0;
-	while (split_args[j])
+	while (args[j])
 	{
-		if (is_numeric(split_args[j]) == 1)
+		if (is_numeric(args[j]) == 1)
 		{
 			write(2, "Error\n", 6);
 			return (0);
 		}
-		num = (int *)malloc(sizeof(int));
-		if (!num)
-			return (0);
-		*num = ft_atoi (split_args[j]);
-		// ft_printf("is double ? : [%d]\n", is_double(*a, *num));
-		if (is_double(*a, *num) == 1)
+		// num = (int *)malloc(sizeof(int));
+		// if (!num)
+		// 	return (0);
+		ft_printf("return in check_stack after is_num\n");
+		ft_printf("args[j] = [%s]\n", args[j]);
+		num = ft_atoi (args[j]);
+		ft_printf("num : [%d]\n", num);
+		if (is_double(*a, &num) == 1)
 		{
-			free (num);
+			// free (num);
 			write(2, "Error\n", 6);
 			return (0);
 		}
-		new_node = ft_new_node(num);
+		new_node = ft_new_node(&num);
+		ft_printf("new_node : [%d]\n", new_node->content);
 		if (!new_node)
 		{
-			free (num);
+			// free (num);
 			return (0);
 		}
-		ft_lstadd_back (a, new_node);
-		ft_printf("j = %d : arg [%s] -> num [%d]\n", j, split_args[j], num[j]);
+		lstadd_back (a, new_node);
+		// ft_printf("\t liste a : \n");
+		// print_pslist(*a);
+		// ft_printf("j : [%d]\n", j);
 		j++;
 	}
 	return (1);
 }
 
-int	parsing_args(t_list **a, int ac, char **av)
+int	parsing_args(t_pslist **a, int ac, char **av)
 {
 	int		i;
 	char	**split_args;
 
 	i = 1;
-
-	// ft_printf("parsing_args OK\n");
+	ft_printf("parsing_args OK\n");
 
 	while (i < ac)
 	{
+		ft_printf("Before split\n");
 		split_args = ft_split(av[i], ' ');
 		if (!split_args || !check_stack(a, split_args))
 		{
 			free_split(split_args);
-			ft_lstclear (a, free);
+			lstclear (a, free);
 			return (0);
 		}
 		free_split(split_args);

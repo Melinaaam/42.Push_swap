@@ -6,17 +6,17 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:46:46 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/09 13:50:04 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:43:28 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	ft_ra(t_list **a)
+void	ft_ra(t_pslist **a)
 {
-	t_list	*temp;
-	t_list	*head;
+	t_pslist	*temp;
+	t_pslist	*head;
 
 	if (*a == NULL || (*a)->next == NULL)
 		return ;
@@ -31,10 +31,10 @@ void	ft_ra(t_list **a)
 	ft_printf ("ra\n");
 }
 
-void	ft_rb(t_list **b)
+void	ft_rb(t_pslist **b)
 {
-	t_list	*temp;
-	t_list	*head;
+	t_pslist	*temp;
+	t_pslist	*head;
 
 	if (*b == NULL || (*b)->next == NULL)
 		return ;
@@ -49,7 +49,7 @@ void	ft_rb(t_list **b)
 	ft_printf ("rb\n");
 }
 
-void	ft_rr(t_list **a, t_list **b)
+void	ft_rr(t_pslist **a, t_pslist **b)
 {
 	ft_ra (a);
 	ft_rb (b);

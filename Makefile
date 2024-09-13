@@ -8,7 +8,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Chemin vers libft
-LIBFT_DIR = ../../libft
+LIBFT_DIR = libft
 LIBFT = -L$(LIBFT_DIR) -lft
 
 # Chemin vers les fichiers d'en-tête
