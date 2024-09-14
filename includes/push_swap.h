@@ -6,20 +6,32 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/13 18:49:09 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:27:46 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdbool.h>
+
 # include "libft.h"
+
+#ifndef INT_MAX
+# define INT_MAX 2147483647
+#endif
+
+#ifndef INT_MIN
+# define INT_MIN -2147483648
+#endif
 
 typedef struct ps_list
 {
 	struct ps_list	*next;
 	struct ps_list	*prev;
 	int				*content;
+	int				nb;
+	bool 			min;
 }				t_pslist;
 
 //push_swap
@@ -44,19 +56,27 @@ void	sort_three(t_pslist **a);
 // void	sort_five(t_pslist **a, t_pslist **b);
 
 //utils
-void lstadd_back(t_pslist **lst, t_pslist *new);
-void lstclear(t_pslist **lst, void (*del)(void*));
+// void	lstadd_back(t_pslist **lst, t_pslist *new);
+// void	lstclear(t_pslist **lst, void (*del)(void*));
+int		safe_atoi(const char *str);
+int	size_stack(t_pslist *lst);
 
 //parsing
-void	free_split(char **split);
-int		is_double(t_pslist *a, int *nb);
+// void	free_split(char **split);
+int		is_double(t_pslist *a, int nb);
 int		is_numeric(char *str);
+t_pslist	*last_node(t_pslist *a);
+static t_pslist *new_node(int *node, t_pslist **list);
+int	check_stack(t_pslist **a, char **args);
+
 // static 	t_pslist *ft_new_node(int *nb);
-int		check_stack(t_pslist **a, char **split_args);
-int		parsing_args(t_pslist **a, int ac, char **av);
 
 //main
 void	print_pslist(t_pslist *a);
 void	ft_lstclear_two(t_pslist **lst, void (*del)(void*));
+bool	stack_sorted(t_pslist *a);
 
+//error and free
+void	free_list(t_pslist **a);
+int	ft_error(t_pslist **a, char **av);
 #endif
