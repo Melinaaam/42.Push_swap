@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/14 18:13:00 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:03:49 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	print_pslist(t_pslist *a)
 
 bool	stack_sorted(t_pslist *a)
 {
+	ft_printf("stack_sorted ok\n");
 	if (a == NULL)
 		return (true);
 	while (a->next)
@@ -44,10 +45,10 @@ bool	stack_sorted(t_pslist *a)
 int	main(int ac, char **av)
 {
 	t_pslist	*a;
-	t_pslist	*b;
+	// t_pslist	*b;
 
 	a = NULL;
-	b = NULL;
+	// b = NULL;
 
 	if (ac == 1 || !av[1][0])
 		return (EXIT_FAILURE);
@@ -57,14 +58,21 @@ int	main(int ac, char **av)
 		if (av == NULL)
 			exit(EXIT_FAILURE);
 	}
-	check_stack(&a, av + 1);
+	check_stack(&a, av + 1, ac == 2);
 	if (!stack_sorted(a))
 	{
 		if (size_stack(a) == 2)
+		{
 			ft_sa(&a);
+			ft_printf("sort_two ok\n");
+		}
 		else
+		{
 			sort_three(&a);
+			ft_printf("sort_three ok\n");
+		}
 	}
+	print_pslist(a);
 	free_list(&a);
 	return (0);
 }

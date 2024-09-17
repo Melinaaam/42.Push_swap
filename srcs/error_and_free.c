@@ -5,12 +5,23 @@ int	ft_error(t_pslist **a, char **av, bool two_ac)
 {
 	free_list(a);
 	if (two_ac)
-		//free argument av
+		free_av(av);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 
-//free list
+void	free_av(char **av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+	{
+		free(av[i]);
+		i++;
+	}
+	free(av);
+}
 
 void	free_list(t_pslist **a)
 {

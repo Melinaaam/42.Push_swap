@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/14 18:27:46 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:54:45 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ int	size_stack(t_pslist *lst);
 int		is_double(t_pslist *a, int nb);
 int		is_numeric(char *str);
 t_pslist	*last_node(t_pslist *a);
-static t_pslist *new_node(int *node, t_pslist **list);
-int	check_stack(t_pslist **a, char **args);
+int	check_stack(t_pslist **a, char **args, bool two_ac);
 
 // static 	t_pslist *ft_new_node(int *nb);
 
@@ -78,5 +77,6 @@ bool	stack_sorted(t_pslist *a);
 
 //error and free
 void	free_list(t_pslist **a);
-int	ft_error(t_pslist **a, char **av);
+int		ft_error(t_pslist **a, char **av, bool two_ac);
+void	free_av(char **av);
 #endif
