@@ -5,7 +5,7 @@ NAME = push_swap
 CC = cc
 
 # Options de compilation
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 # Chemin vers libft
 LIBFT_DIR = libft

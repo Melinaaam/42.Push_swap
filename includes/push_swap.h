@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/17 18:54:45 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/18 16:22:47 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct ps_list
 	bool 			min;
 }				t_pslist;
 
-//push_swap
+//push_and_swap
 void	ft_pa(t_pslist **a, t_pslist **b);
 void	ft_pb(t_pslist **a, t_pslist **b);
 void	ft_sa(t_pslist **a);
@@ -51,32 +51,35 @@ void	ft_rra(t_pslist **a);
 void	ft_rrb(t_pslist **b);
 void	ft_rrr(t_pslist **a, t_pslist **b);
 
+//algos utils
+t_pslist	*lists_gp(t_pslist **a, int size_gp);
+int	find_median(t_pslist *group, t_pslist **b, int size_gp);
+
+
 //algos
-void	sort_three(t_pslist **a);
-// void	sort_five(t_pslist **a, t_pslist **b);
-
-//utils
-// void	lstadd_back(t_pslist **lst, t_pslist *new);
-// void	lstclear(t_pslist **lst, void (*del)(void*));
-int		safe_atoi(const char *str);
-int	size_stack(t_pslist *lst);
-
-//parsing
-// void	free_split(char **split);
-int		is_double(t_pslist *a, int nb);
-int		is_numeric(char *str);
-t_pslist	*last_node(t_pslist *a);
-int	check_stack(t_pslist **a, char **args, bool two_ac);
-
-// static 	t_pslist *ft_new_node(int *nb);
-
-//main
-void	print_pslist(t_pslist *a);
-void	ft_lstclear_two(t_pslist **lst, void (*del)(void*));
 bool	stack_sorted(t_pslist *a);
+void	sort_three(t_pslist **a);
+void	sort_five(t_pslist **a, t_pslist **b);
 
 //error and free
 void	free_list(t_pslist **a);
 int		ft_error(t_pslist **a, char **av, bool two_ac);
 void	free_av(char **av);
+
+//main
+void	print_pslist(t_pslist *a);
+
+//parsing
+int		is_double(t_pslist *a, int nb);
+int		is_numeric(char *str);
+t_pslist	*last_node(t_pslist *a);
+void new_node(int node, t_pslist **list);
+int	check_stack(t_pslist **a, char **args, bool two_ac);
+
+//utils
+int	size_stack(t_pslist *lst);
+int	ft_smallest(t_pslist *a);
+void	move_smallest(t_pslist **a);
+int	position_smallest(t_pslist *a, int value);
+
 #endif

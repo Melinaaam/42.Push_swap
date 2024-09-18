@@ -7,7 +7,7 @@ int	ft_error(t_pslist **a, char **av, bool two_ac)
 	if (two_ac)
 		free_av(av);
 	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	return (0);
 }
 
 void	free_av(char **av)

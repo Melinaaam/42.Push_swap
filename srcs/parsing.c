@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/17 19:01:27 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/18 11:31:28 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	is_double(t_pslist *a, int nb)
 {
-	ft_printf("is_double ok\n");
+	//ft_printf("is_double ok\n");
 	if (!a)
 		return (0);
 	while (a)
@@ -30,7 +30,7 @@ int	is_double(t_pslist *a, int nb)
 
 int	is_numeric(char *str)
 {
-	ft_printf("is_numeric ok\n");
+	//ft_printf("is_numeric ok\n");
 	int	i;
 
 	i = 0;
@@ -52,14 +52,14 @@ t_pslist	*last_node(t_pslist *a)
 {
 	if (a == NULL)
 		return (NULL);
-	while (a->next)
+	while (a->next != NULL)
 		a = a->next;
 	return (a);
 }
 
-static void new_node(int node, t_pslist **list)
+void new_node(int node, t_pslist **list)
 {
-	ft_printf("new_node ok\n");
+	//ft_printf("new_node ok\n");
 	t_pslist	*new_node;
 	t_pslist	*last;
 
@@ -68,7 +68,10 @@ static void new_node(int node, t_pslist **list)
 
 	new_node = malloc(sizeof(t_pslist));
 	if (new_node == NULL)
+	{
 		free_list(&new_node);
+		return ;
+	}
 
 	new_node->next = NULL;
 	new_node->nb = node;
@@ -76,7 +79,7 @@ static void new_node(int node, t_pslist **list)
 
 	if (*list == NULL)
 	{
-		list = &new_node;
+		*list = new_node;
 		new_node->prev = NULL;
 	}
 	else
@@ -85,32 +88,34 @@ static void new_node(int node, t_pslist **list)
 		last->next = new_node;
 		new_node->prev = last;
 	}
-	ft_printf("\tnew_node->nb = %d\n", new_node->nb);
+	//ft_printf("\tnew_node->nb = %d\n", new_node->nb);
 }
 
-int	check_stack(t_pslist **a, char **args, bool two_ac)
+int	check_stack(t_pslist **a, char **av, bool two_ac)
 {
 	int			j;
 	long		num;
 
 	j = 0;
-	while (args[j])
+	while (av[j])
 	{
-		if (!is_numeric(args[j]))
-			ft_error(a, &args[j], two_ac);
-		num = safe_atoi(args[j]);
+		if (!is_numeric(av[j]))
+			ft_error(a, &av[j], two_ac);
+
+		num = ft_atoi(av[j]);
+
 		if (num > INT_MAX || num < INT_MIN)
-			ft_error(a, &args[j], two_ac);
+			ft_error(a, &av[j], two_ac);
 		if (is_double(*a, num) == 1)
-			ft_error(a, &args[j], two_ac);
-		ft_printf("check double, int et numeric ok\n");
+			ft_error(a, &av[j], two_ac);
+		//ft_printf("check double, int et numeric ok\n");
 		new_node((int)num, a);
-		ft_printf("new_node : %d\n", (int)num);
+		//ft_printf("new_node : %d\n", (int)num);
 		print_pslist(*a);
 		j++;
 	}
 	if (two_ac)
-		free_av(args);
+		free_av(av);
 	return (1);
 }
 

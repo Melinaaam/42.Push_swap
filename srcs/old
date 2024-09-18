@@ -1,15 +1,3 @@
-#include <stdio.h>
-#include "libft.h"
-#include "push_swap.h"
-
-void	print_list(t_list *a)
-{
-	while (a)
-	{
-		printf("%d\n", *(int *)a->content);
-		a = a->next;
-	}
-}
 
 int	neg_to_pos(int nb)
 {
@@ -241,23 +229,21 @@ void	sort_stack(t_list **a, t_list **b)
 }
 
 
+int	is_sorted(t_list *a)
+{
+	int	first;
+	int	second;
+	int	third;
 
+	// ft_printf("is_sorted OK\n");
 
-// int	is_sorted(t_list *a)
-// {
-// 	int	first;
-// 	int	second;
-// 	int	third;
-
-// 	// ft_printf("is_sorted OK\n");
-
-// 	first = *((int *)a->content);
-// 	second = *((int *)a->next->content);
-// 	third = *((int *)a->next->next->content);
-// 	if (first < second && second < third)
-// 		return (1);
-// 	return (0);
-// }
+	first = *((int *)a->content);
+	second = *((int *)a->next->content);
+	third = *((int *)a->next->next->content);
+	if (first < second && second < third)
+		return (1);
+	return (0);
+}
 
 
 
