@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/18 11:31:28 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:40:49 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	check_stack(t_pslist **a, char **av, bool two_ac)
 		//ft_printf("check double, int et numeric ok\n");
 		new_node((int)num, a);
 		//ft_printf("new_node : %d\n", (int)num);
-		print_pslist(*a);
+		// print_pslist(*a);
 		j++;
 	}
 	if (two_ac)

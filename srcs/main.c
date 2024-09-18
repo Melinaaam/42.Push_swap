@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/18 15:40:30 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:43:43 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
+	group = NULL;
 
 	if (ac == 1 || !av[1][0])
 		return (1);
@@ -50,26 +51,38 @@ int	main(int ac, char **av)
 		//ft_printf("size : [%d]\n", size);
 		if (size == 2)
 		{
-			ft_printf("before ft_sa\n");
+			//ft_printf("before ft_sa\n");
 			ft_sa(&a);
-			ft_printf("sort_two ok\n");
+			//ft_printf("sort_two ok\n");
 		}
 		else if (size == 3)
 		{
-			ft_printf("before sort three\n");
+			//ft_printf("before sort three\n");
 			sort_three(&a);
-			ft_printf("sort_three ok\n");
+			//ft_printf("sort_three ok\n");
 		}
 		else if (size == 4 || size == 5)
 		{
-			ft_printf("before sort five\n");
+			//ft_printf("before sort five\n");
 			sort_five(&a, &b);
-			ft_printf("sort five ok\n");
+			//ft_printf("sort five ok\n");
 		}
 		else
 		{
 			ft_printf("algo a venir\n");
-			find_median(&group, &b, 5);
+			group = lists_gp(&a, 5);
+			if (!group)
+			{
+				ft_printf("lists_gp failed\n");
+				free_list(&a);
+				return (1);
+			}
+			//a revoir pour :
+			//gestion des groups
+			//trier les groups
+			//trouver la mediane
+			//trouver la mediane des medianes
+			//trier a en fonction de la mediane des medianes
 		}
 	}
 	ft_printf("print a fin main : \n");

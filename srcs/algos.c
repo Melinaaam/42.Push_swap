@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:22:28 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/18 13:57:44 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/18 18:45:25 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,36 @@ void	sort_three(t_pslist **a)
 
 void	sort_five(t_pslist **a, t_pslist **b)
 {
-	ft_printf("sort five ok\n");
+	ft_printf("debut du tri avec sort_five\n");
+	print_pslist(*a);
+
 	int	size;
 	int	smallest;
 
 	size = size_stack(*a);
+
 	ft_printf("size a :[%d] \n", size);
+
 	smallest = ft_smallest(*a);
+
 	ft_printf("smallest : [%d]\n", smallest);
+
 	if (size != 4 &&size != 5)
 		return ;
-	if (size == 4 || size == 5)
+	if (size == 5)
 	{
+		move_smallest(a);
+		ft_pb(a, b);
+		smallest = ft_smallest(*a);
+		move_smallest(a);
+		ft_pb(a, b);
+		sort_three(a);
+		ft_pa(a, b);
+		ft_pa(a, b);
+	}
+	else if (size == 4)
+	{
+		smallest = ft_smallest(*a);
 		move_smallest(a);
 		ft_pb(a, b);
 		sort_three(a);
@@ -84,4 +102,6 @@ void	sort_five(t_pslist **a, t_pslist **b)
 	}
 	else //if (size == 5)
 		ft_printf("algo en cours \n");
+	ft_printf("Apres le tri dans sort_five\n");
+	print_pslist(*a);
 }

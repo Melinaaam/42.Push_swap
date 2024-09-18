@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/18 16:22:47 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:39:36 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ void	ft_rrr(t_pslist **a, t_pslist **b);
 
 //algos utils
 t_pslist	*lists_gp(t_pslist **a, int size_gp);
-int	find_median(t_pslist *group, t_pslist **b, int size_gp);
-
+int	find_median(t_pslist *group, int size_gp);
+void	create_group(t_pslist **a, t_pslist **b);
+int	find_median_of_medians(int *medians, int num_groups);
+void bubble_sort(int arr[], int n);
 
 //algos
 bool	stack_sorted(t_pslist *a);
