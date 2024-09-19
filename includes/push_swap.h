@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/18 19:39:36 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/19 13:50:12 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ void	ft_rrr(t_pslist **a, t_pslist **b);
 //algos utils
 t_pslist	*lists_gp(t_pslist **a, int size_gp);
 int	find_median(t_pslist *group, int size_gp);
-void	create_group(t_pslist **a, t_pslist **b);
+t_pslist	create_group(t_pslist **a, t_pslist **b);
 int	find_median_of_medians(int *medians, int num_groups);
 void bubble_sort(int arr[], int n);
+void	partition_a(t_pslist **a, t_pslist **b, int median_of_medians);
 
 //algos
 bool	stack_sorted(t_pslist *a);
@@ -79,7 +80,7 @@ void new_node(int node, t_pslist **list);
 int	check_stack(t_pslist **a, char **args, bool two_ac);
 
 //utils
-int	size_stack(t_pslist *lst);
+int	size_stack(t_pslist *stack);
 int	ft_smallest(t_pslist *a);
 void	move_smallest(t_pslist **a);
 int	position_smallest(t_pslist *a, int value);

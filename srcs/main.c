@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/18 19:43:43 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/19 13:52:47 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ int	main(int ac, char **av)
 {
 	t_pslist	*a;
 	t_pslist	*b;
-	t_pslist	*group;
 
 	a = NULL;
 	b = NULL;
-	group = NULL;
 
 	if (ac == 1 || !av[1][0])
 		return (1);
@@ -45,6 +43,7 @@ int	main(int ac, char **av)
 	}
 	else if (ac > 2)
 		check_stack(&a, av + 1, false);
+
 	if (!stack_sorted(a))
 	{
 		int	size = size_stack(a);
@@ -69,26 +68,38 @@ int	main(int ac, char **av)
 		}
 		else
 		{
-			ft_printf("algo a venir\n");
-			group = lists_gp(&a, 5);
-			if (!group)
-			{
-				ft_printf("lists_gp failed\n");
-				free_list(&a);
-				return (1);
-			}
-			//a revoir pour :
-			//gestion des groups
-			//trier les groups
-			//trouver la mediane
-			//trouver la mediane des medianes
-			//trier a en fonction de la mediane des medianes
+			ft_printf("create group in main \n", create_group(&a, &b));
+
+			// int median_of_medians = find_median_of_medians;
+
+			// ft_printf("size a after create_group : [%d]\n", size);
+			// if (median_of_medians == -999999)
+			// {
+			// 	ft_printf("Eerror");
+			// 	free_list(&a);
+			// 	free_list(&b);
+			// 	return (1);
+			// }
+
+			ft_printf("size a before partition : [%d]\n", size);
+			// partition_a(&a, &b, median_of_medians);
+			//ft_printf("After create group in main:\n");
+			//print_pslist(a);
+			//print_pslist(b);
+			//fonction pour partitionner a en fonction de la mediane des medianes
+			//ex, les elmts < medi des medi dans b, les elmts restants >= restent dans a
+			ft_printf("lists after partition : \n");
+			print_pslist(a);
+			print_pslist(b);
 		}
 	}
-	ft_printf("print a fin main : \n");
+	ft_printf("lists after partition : \n");
 	print_pslist(a);
+	print_pslist(b);
+	// ft_printf("\tprint a fin main : \n");
+	// print_pslist(a);
 	free_list(&a);
 	// print_pslist(b);
-	// free_list(&b);
+	free_list(&b);
 	return (0);
 }

@@ -1,32 +1,29 @@
 #include "libft.h"
 #include "push_swap.h"
 
-int	size_stack(t_pslist *lst)
+int	size_stack(t_pslist *stack)
 {
 	int	i;
 
 	i = 0;
-	if (!lst)
+	if (!stack)
 		return (0);
-	while (lst)
+	while (stack != NULL)
 	{
-		lst = lst->next;
 		i++;
+		stack = stack->next;
 	}
 	return (i);
 }
 
-//trouver + petit dans a
 
 int	ft_smallest(t_pslist *a)
 {
-	ft_printf("smallest OK\n");
 	int	result;
 
 	if (a == NULL)
 		return (0);
 	result = (a)->nb;
-	ft_printf("result in ft_smallest : [%d]\n", result);
 	while(a != NULL)
 	{
 		if (result > (a)->nb)
@@ -36,7 +33,6 @@ int	ft_smallest(t_pslist *a)
 	return (result);
 }
 
-//pousser le + petit elmt de a dans b
 void	move_smallest(t_pslist **a)
 {
 	int	smallest;
@@ -53,7 +49,6 @@ void	move_smallest(t_pslist **a)
 		ft_ra(a);
 }
 
-//trouver position du plus petit elmt de a
 int	position_smallest(t_pslist *a, int value)
 {
 	int position = 0;

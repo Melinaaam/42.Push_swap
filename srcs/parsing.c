@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/18 19:40:49 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/19 14:39:04 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 int	is_double(t_pslist *a, int nb)
 {
-	//ft_printf("is_double ok\n");
 	if (!a)
 		return (0);
 	while (a)
 	{
-		//ft_printf("list elem [%d] VS [%d]\n", *head->nb, nb);
 		if (a->nb == nb)
 			return (1);
 		a = a->next;
@@ -30,7 +28,6 @@ int	is_double(t_pslist *a, int nb)
 
 int	is_numeric(char *str)
 {
-	//ft_printf("is_numeric ok\n");
 	int	i;
 
 	i = 0;
@@ -59,7 +56,6 @@ t_pslist	*last_node(t_pslist *a)
 
 void new_node(int node, t_pslist **list)
 {
-	//ft_printf("new_node ok\n");
 	t_pslist	*new_node;
 	t_pslist	*last;
 
@@ -88,7 +84,6 @@ void new_node(int node, t_pslist **list)
 		last->next = new_node;
 		new_node->prev = last;
 	}
-	//ft_printf("\tnew_node->nb = %d\n", new_node->nb);
 }
 
 int	check_stack(t_pslist **a, char **av, bool two_ac)
@@ -108,10 +103,7 @@ int	check_stack(t_pslist **a, char **av, bool two_ac)
 			ft_error(a, &av[j], two_ac);
 		if (is_double(*a, num) == 1)
 			ft_error(a, &av[j], two_ac);
-		//ft_printf("check double, int et numeric ok\n");
 		new_node((int)num, a);
-		//ft_printf("new_node : %d\n", (int)num);
-		// print_pslist(*a);
 		j++;
 	}
 	if (two_ac)
