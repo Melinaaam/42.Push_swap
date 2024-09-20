@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/19 13:50:12 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:43:10 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ void	ft_rra(t_pslist **a);
 void	ft_rrb(t_pslist **b);
 void	ft_rrr(t_pslist **a, t_pslist **b);
 
-//algos utils
-t_pslist	*lists_gp(t_pslist **a, int size_gp);
-int	find_median(t_pslist *group, int size_gp);
-t_pslist	create_group(t_pslist **a, t_pslist **b);
-int	find_median_of_medians(int *medians, int num_groups);
-void bubble_sort(int arr[], int n);
-void	partition_a(t_pslist **a, t_pslist **b, int median_of_medians);
+//mediane
+//void	create_tab(t_pslist *a, int **tab, int size_a);
+void		sort_intab(int **tab, int size_a);
+int		find_mediane(t_pslist *a, int size_a);
+void	partition_a(t_pslist **a, t_pslist **b);
 
 //algos
 bool	stack_sorted(t_pslist *a);
@@ -84,5 +82,9 @@ int	size_stack(t_pslist *stack);
 int	ft_smallest(t_pslist *a);
 void	move_smallest(t_pslist **a);
 int	position_smallest(t_pslist *a, int value);
+void	choose_algo(t_pslist **a, t_pslist **b);
+
+//algo utils
+void	partition_a(t_pslist **a, t_pslist **b);
 
 #endif

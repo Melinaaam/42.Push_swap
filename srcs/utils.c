@@ -62,3 +62,17 @@ int	position_smallest(t_pslist *a, int value)
 	}
 	return(0);
 }
+void	choose_algo(t_pslist **a, t_pslist **b)
+{
+	int	size;
+
+	size = size_stack(*a);
+	if (size == 2)
+		ft_sa(a);
+	else if (size == 3)
+		sort_three(a);
+	else if (size == 4 || size == 5)
+		sort_five(a, b);
+	else
+		partition_a(a, b);
+}

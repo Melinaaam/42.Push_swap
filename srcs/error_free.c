@@ -12,6 +12,7 @@ int	ft_error(t_pslist **a, char **av, bool two_ac)
 
 void	free_av(char **av)
 {
+	ft_printf("free-av ok");
 	int	i;
 
 	i = 0;
@@ -25,6 +26,7 @@ void	free_av(char **av)
 
 void	free_list(t_pslist **a)
 {
+	ft_printf("free list ok");
 	t_pslist	*node;
 	t_pslist	*temp;
 

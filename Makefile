@@ -46,18 +46,18 @@ $(OBJ_DIR)/%.o: srcs/%.c | $(OBJ_DIR)
 
 # Construction de la bibliothèque libft
 $(LIBFT_DIR)/libft.a:
-	@($(MAKE) -C $(LIBFT_DIR))
+	@make -C $(LIBFT_DIR) --no-print-directory
 
 # Nettoyage des fichiers objets
 clean:
 	@rm -rf $(OBJ_DIR)
-	@($(MAKE) -C $(LIBFT_DIR) clean)
+	@make -C $(LIBFT_DIR) clean --no-print-directory
 	@echo "🧹 Clean Over ! 🧹"
 
 # Nettoyage complet (fichiers objets + exécutable)
 fclean: clean
 	@rm -f $(NAME)
-	@($(MAKE) -C $(LIBFT_DIR) fclean)
+	@make -C $(LIBFT_DIR) fclean --no-print-directory
 	@echo "🧼 All Clean Over !!! 🧼"
 
 # Reconstruction complète
