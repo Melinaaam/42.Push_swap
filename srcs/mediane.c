@@ -59,6 +59,9 @@ int	find_mediane(t_pslist *a, int size_a)
 			exit(EXIT_FAILURE);
 	sort_intab(&tab, size_a);
 	mediane = tab[size_a / 2];
+	ft_printf(".........................\n");
+	ft_printf("mediane : [%d]\n", mediane);
+	ft_printf(".........................\n");
 	free(tab);
 	return (mediane);
 }
@@ -76,7 +79,7 @@ int	pos_med(t_pslist *a, int mediane)
 	return (pos);
 }
 
-int	find_position(t_pslist *a, int mediane, int pos_med)
+int	find_mediane_position(t_pslist *a, int mediane, int pos_med)
 {
 	int	pos1;
 	int pos2;
@@ -85,7 +88,9 @@ int	find_position(t_pslist *a, int mediane, int pos_med)
 	if (a == NULL)
 		return (-1);
 	pos1 = 0;
+	//ft_printf("pos1 = [%d]\n", pos1);
 	pos2 = size_stack(a) - 1;
+	//ft_printf("pos2 = [%d]\n", pos2);
 	while(a->nb > mediane && a->next && pos1 <= pos_med)
 	{
 		a = a->next;
@@ -98,7 +103,11 @@ int	find_position(t_pslist *a, int mediane, int pos_med)
 		pos2--;
 	}
 	if (pos1 > pos2)
+	{
 		return(pos2);
+		ft_printf("pos2 = [%d]\n", pos2);
+	}
+	ft_printf("pos1 = [%d]\n", pos1);
 	return (pos1);
 }
 

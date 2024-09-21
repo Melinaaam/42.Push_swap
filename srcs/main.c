@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/20 16:40:52 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:51:52 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ int	main(int ac, char **av)
 	{
 		choose_algo(&a, &b);
 	}
+	ft_printf("list a : \n");
+	print_pslist(a);
+	ft_printf("list b : \n");
+	print_pslist(b);
 	free_list(&a);
 	free_list(&b);
 	return (0);
