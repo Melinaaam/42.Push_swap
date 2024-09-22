@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:22:28 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/21 19:23:54 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/22 16:43:30 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void	sort_five(t_pslist **a, t_pslist **b)
 	print_pslist(*a);
 
 	int	size;
-	int	smallest;
+	//int	smallest;
 
 	size = size_stack(*a);
 
 	//ft_printf("size a :[%d] \n", size);
 
-	smallest = ft_smallest(*a);
+	//smallest = ft_smallest(*a);
 
 	//ft_printf("smallest : [%d]\n", smallest);
 
@@ -85,7 +85,7 @@ void	sort_five(t_pslist **a, t_pslist **b)
 	{
 		move_smallest(a);
 		ft_pb(a, b);
-		smallest = ft_smallest(*a);
+		//smallest = ft_smallest(*a);
 		move_smallest(a);
 		ft_pb(a, b);
 		sort_three(a);
@@ -94,7 +94,7 @@ void	sort_five(t_pslist **a, t_pslist **b)
 	}
 	else if (size == 4)
 	{
-		smallest = ft_smallest(*a);
+		//smallest = ft_smallest(*a);
 		move_smallest(a);
 		ft_pb(a, b);
 		sort_three(a);
@@ -106,24 +106,33 @@ void	sort_five(t_pslist **a, t_pslist **b)
 
 void	push_biggest_in_a(t_pslist **b, t_pslist **a)
 {
-	int	cost;
-	int	mediane;
-
-	cost = position_biggest(*b, find_biggest(*b));
-	mediane = pos_med(*b, find_mediane(*b, size_stack(*b)));
-	ft_printf("mediane : [%d]\n", mediane);
-	ft_printf("cost : [%d]\n", cost);
-	while (cost && a)
+	while (*b)
 	{
-		if (cost >= mediane)
+		int	biggest = find_biggest(*b);
+		int	pos = position_biggest(*b, biggest);
+
+		while(pos > 0)
 		{
 			ft_rb(b);
-			cost--;
+			pos--;
 		}
-		else if (cost < mediane)
-			ft_rrb(b);
 		ft_pa(a, b);
-		ft_printf("cost : [%d]\n", cost);
 	}
-	ft_pa(a, b);
+}
+
+void	insert_into_a(t_pslist *a, t_pslist *new_elem)
+{
+	if (a == NULL || a->nb > new_elem->nb)
+	{
+		new_elem->next = a;
+		*a = *new_elem;
+	}
+	else
+	{
+		t_pslist	*tmp = a;
+		while (tmp->next && tmp->next->nb >= new_elem->nb)
+			tmp = tmp->next;
+		new_elem->next = tmp->next;
+		tmp->next = new_elem;
+	}
 }

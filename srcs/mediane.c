@@ -47,12 +47,12 @@ void	sort_intab(int **tab, int size_a)
 int	find_mediane(t_pslist *a, int size_a)
 {
 	int	*tab;
-	int	i;
-	int	j;
+	//int	i;
+	//int	j;
 	int	mediane;
 
-	i = 0;
-	j = 0;
+	//i = 0;
+	//j = 0;
 	tab = NULL;
 	create_tab(a, &tab, size_a);
 	if (tab == NULL)

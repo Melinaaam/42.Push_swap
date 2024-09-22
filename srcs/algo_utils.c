@@ -70,6 +70,7 @@ int	find_biggest(t_pslist *b)
 	// ft_printf("Biggest in b : {%d}\n", biggest);
 	return(biggest);
 }
+
 int	position_biggest(t_pslist *b, int big)
 {
 	// ft_printf("find_biggest OK\n");
