@@ -5,88 +5,121 @@ void	partition_a(t_pslist **a, t_pslist **b)
 {
 	int	mediane;
 	int	middle;
-	int nb_to_push;
+	int position;
 
-	mediane = find_mediane(*a, size_stack(*a));
-	middle = size_stack(*a) - 3;
-	nb_to_push = find_mediane_position(*a, mediane, pos_med(*a, mediane));
-	//ft_printf("nb_to_push : [%d]\n", nb_to_push);
+	mediane = find_mediane(*a, size_list(*a));
+	middle = size_list(*a) - 3;
+	position = find_position(*a, mediane, pos_med(*a, mediane));
 
 	while (middle > 0)
 	{
-		if (nb_to_push != 0)
+		if (position != 0)
 		{
-			while (nb_to_push <= middle && nb_to_push > 0)
+			while (position <= middle && position > 0)
 			{
-				//ft_printf("nb_to_push : [%d]\n", nb_to_push);
 				ft_ra(a);
-				nb_to_push--;
+				position--;
 			}
-			while (nb_to_push > middle && nb_to_push < size_stack(*a))
+			while (position > middle && position < size_list(*a))
 			{
 				ft_rra(a);
-				nb_to_push++;
+				position++;
 			}
 		}
 		ft_pb(a, b);
-		//ft_printf("\nlist b after pb : \n");
-		print_pslist(*b);
-		//mediane = find_mediane(*a, size_stack(*a));
-		nb_to_push = find_mediane_position(*a, mediane, pos_med(*a, mediane));
+		position = find_position(*a, mediane, pos_med(*a, mediane));
 		middle--;
 	}
 	sort_three(a);
-	push_biggest_in_a(b, a);
-	// ft_printf("After partition\n");
-	// ft_printf("stack a\n");
-	// print_pslist(*a);
-	// ft_printf("stack b\n");
-	// print_pslist(*b);
 }
 
-int	find_biggest(t_pslist *b)
+void	move_to_a(t_pslist	**a, t_pslist **b)
 {
-	// ft_printf("find biggest OK\n");
-	// ft_printf("list b : \n");
-	print_pslist(b);
-	int	biggest;
-	int			i;
+	t_pslist	*move;
 
-	i = INT_MIN;
-	biggest = 0;
+	move = *b;
+	if (move == NULL)
+		return;
+	while(move)
+	{
+		if (move->min == true)
+			break;
+		move = move->next;
+	}
+	if (move->bellow_mediane == true && move->closer->bellow_mediane == true)
+	{
+		while (move != *b && move->closer != *a)
+			ft_rr(a, b);
+		prepare_algo(*a, *b);
+	}
+	else if (!(move->bellow_mediane) && !(move->closer->bellow_mediane))
+	{
+		while(move != *b && move->closer != *a)
+			ft_rrr(a, b);
+		prepare_algo(*a, *b);
+	}
+	//sort_a_and_b(a, b, move);
+	//ft_pa(a, b);
+}
+
+void	prepare_algo(t_pslist *a, t_pslist *b)
+{
+	ft_printf("prepare_algo ok\n");
+	init_true_false_position(a);
+	init_true_false_position(b);
+	find_closer(a, b);
+	cost_calcul(a, b);
+	find_cheapest_cost(b);
+}
+
+void	find_cheapest_cost(t_pslist *b)
+{
+	ft_printf("find_cheapest_cost ok\n");
+	t_pslist	*cheapest_node;
+	long		i;
+
 	if (b == NULL)
-		return (-1);
+		return;
+	cheapest_node = NULL;
+	i = LONG_MAX;
 	while(b)
 	{
-		// ft_printf("list b : \n");
-		// print_pslist(b);
-		if (i < b->nb)
+		if (b->cost < i)
 		{
-			biggest = b->nb;
-			i = b->nb;
+			cheapest_node = b;
+			i = b->cost;
 		}
 		b = b->next;
 	}
-	// ft_printf("Biggest in b : {%d}\n", biggest);
-	return(biggest);
+	ft_printf("cheapest_node->nb = %d\n", cheapest_node->nb);
+	cheapest_node->min = true;
+	return ;
 }
 
-int	position_biggest(t_pslist *b, int big)
+void	cost_calcul(t_pslist *a, t_pslist *b)
 {
-	// ft_printf("find_biggest OK\n");
-	int position = 0;
+	ft_printf("cost_calcul ok\n");
+	int	len_lst_a;
+	int	len_lst_b;
 
-	big = find_biggest(b);
-	// ft_printf("big before while: [%d]\n", big);
-	while (b != NULL)
+	len_lst_a = size_list(a);
+	len_lst_b = size_list(b);
+	while(b)
 	{
-		if (b->nb == big)
+		b->cost = b->position;
+		if(b->bellow_mediane == true)
 		{
-			// ft_printf("position : [%d]\n", position);
-			return (position);
+			b->cost += b->closer->position;
+		}
+		if (b->closer->bellow_mediane == false)
+		{
+			b->cost = size_list(b) - (b->position);
+		}
+		else
+		{
+			b->cost = size_list(a) - (b->closer->position);
 		}
 		b = b->next;
-		position++;
 	}
-	return(0);
+	return;
 }

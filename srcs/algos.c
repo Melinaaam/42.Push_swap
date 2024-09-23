@@ -3,21 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   algos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:22:28 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/22 16:43:30 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/23 14:33:23 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-bool	stack_sorted(t_pslist *a)
+void	choose_algo(t_pslist **a, t_pslist **b)
 {
-	// ft_printf("stack_sorted ok\n");
-	// print_pslist(a);
+	int	size;
 
+	size = size_list(*a);
+	if (size == 2)
+		ft_sa(a);
+	else if (size == 3)
+		sort_three(a);
+	else
+	{
+		ft_printf("more than 3 elements\n");
+		//partition_a(a, b);
+		insert_sort(a, b);
+	}
+}
+
+bool	list_sorted(t_pslist *a)
+{
 	if (a == NULL)
 		return (true);
 
@@ -35,11 +49,6 @@ void	sort_three(t_pslist **a)
 	int	first;
 	int	second;
 	int	third;
-
-	// if (is_sorted(*a))
-	// 	return ;
-
-	// ft_printf("sort_three OK\n");
 
 	first = (*a)->nb;
 	second = (*a)->next->nb;
@@ -63,76 +72,51 @@ void	sort_three(t_pslist **a)
 	}
 }
 
-void	sort_five(t_pslist **a, t_pslist **b)
+void	sort_a_and_b(t_pslist	**a, t_pslist **b, t_pslist *move)
 {
-	//ft_printf("debut du tri avec sort_five\n");
-	print_pslist(*a);
-
-	int	size;
-	//int	smallest;
-
-	size = size_stack(*a);
-
-	//ft_printf("size a :[%d] \n", size);
-
-	//smallest = ft_smallest(*a);
-
-	//ft_printf("smallest : [%d]\n", smallest);
-
-	if (size != 4 &&size != 5)
-		return ;
-	if (size == 5)
+	while (*b != move)
 	{
-		move_smallest(a);
-		ft_pb(a, b);
-		//smallest = ft_smallest(*a);
-		move_smallest(a);
-		ft_pb(a, b);
-		sort_three(a);
-		ft_pa(a, b);
-		ft_pa(a, b);
-	}
-	else if (size == 4)
-	{
-		//smallest = ft_smallest(*a);
-		move_smallest(a);
-		ft_pb(a, b);
-		sort_three(a);
-		ft_pa(a, b);
-	}
-	//ft_printf("Apres le tri dans sort_five\n");
-	//print_pslist(*a);
-}
-
-void	push_biggest_in_a(t_pslist **b, t_pslist **a)
-{
-	while (*b)
-	{
-		int	biggest = find_biggest(*b);
-		int	pos = position_biggest(*b, biggest);
-
-		while(pos > 0)
-		{
+		if (move->bellow_mediane == true)
 			ft_rb(b);
-			pos--;
-		}
-		ft_pa(a, b);
+		else
+			ft_rrb(b);
+	}
+	while (*a != move->closer)
+	{
+		if(move->closer->bellow_mediane == true)
+			ft_ra(a);
+		else
+			ft_rra(a);
 	}
 }
-
-void	insert_into_a(t_pslist *a, t_pslist *new_elem)
+void	insert_sort(t_pslist **a, t_pslist **b)
 {
-	if (a == NULL || a->nb > new_elem->nb)
+	t_pslist	*smallest;
+	int			len_a;
+
+	len_a = size_list(*a);
+	ft_printf("len_a = %d\n", len_a);
+	while(len_a-- > 3)
+		ft_pb(a, b);
+	sort_three(a);
+
+	ft_printf("list a after sort three\n");
+	print_pslist(*a);
+	ft_printf("list b after sort three\n");
+	print_pslist(*b);
+
+	while(*b)
 	{
-		new_elem->next = a;
-		*a = *new_elem;
+		prepare_algo(*a, *b);
+		ft_printf("prepare_algo ok\n");
+		move_to_a(a, b);
 	}
+	init_true_false_position(*a);
+	smallest = find_smallest(*a);
+	if (smallest->bellow_mediane == true)
+		while(*a != smallest)
+			ft_ra(a);
 	else
-	{
-		t_pslist	*tmp = a;
-		while (tmp->next && tmp->next->nb >= new_elem->nb)
-			tmp = tmp->next;
-		new_elem->next = tmp->next;
-		tmp->next = new_elem;
-	}
+		while (*a != smallest)
+			ft_rra(a);
 }

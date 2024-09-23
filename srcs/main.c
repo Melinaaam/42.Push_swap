@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/21 18:51:52 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:04:56 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int	main(int ac, char **av)
 	else if (ac == 2)
 	{
 		av = ft_split(av[1], ' ');
-		check_stack(&a, av, true);
+		check_list(&a, av, true);
 	}
 	else if (ac > 2)
-		check_stack(&a, av + 1, false);
+		check_list(&a, av + 1, false);
 
-	if (!stack_sorted(a))
+	if (!list_sorted(a))
 	{
 		choose_algo(&a, &b);
 	}
@@ -53,6 +53,6 @@ int	main(int ac, char **av)
 	ft_printf("list b : \n");
 	print_pslist(b);
 	free_list(&a);
-	free_list(&b);
+	//free_list(&b);
 	return (0);
 }

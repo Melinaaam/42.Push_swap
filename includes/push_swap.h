@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/21 19:24:27 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:08:23 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,18 @@ typedef struct ps_list
 {
 	struct ps_list	*next;
 	struct ps_list	*prev;
+	//struct ps_list	*content;
+	struct ps_list	*cheapest;
+	struct ps_list	*closer;
 	int				*content;
 	int				nb;
+	int				position;
 	bool 			min;
+	bool			bellow_mediane;
+	int				cost;
 }				t_pslist;
 
-//push_and_swap
+//swap_and_push
 void	ft_pa(t_pslist **a, t_pslist **b);
 void	ft_pb(t_pslist **a, t_pslist **b);
 void	ft_sa(t_pslist **a);
@@ -52,16 +58,18 @@ void	ft_rrb(t_pslist **b);
 void	ft_rrr(t_pslist **a, t_pslist **b);
 
 //mediane
-//void	create_tab(t_pslist *a, int **tab, int size_a);
+void	create_tab(t_pslist *a, int **tab, int size_a);
 void		sort_intab(int **tab, int size_a);
-int		find_mediane(t_pslist *a, int size_a);
-int	pos_med(t_pslist *a, int mediane);
-int	find_mediane_position(t_pslist *a, int mediane, int pos_med);
+int			find_mediane(t_pslist *a, int size_a);
+int			pos_med(t_pslist *a, int mediane);
+int			find_position(t_pslist *a, int mediane, int pos_med);
 
 //algos
-bool	stack_sorted(t_pslist *a);
+void	choose_algo(t_pslist **a, t_pslist **b);
+bool	list_sorted(t_pslist *a);
 void	sort_three(t_pslist **a);
-void	sort_five(t_pslist **a, t_pslist **b);
+void	sort_a_and_b(t_pslist	**a, t_pslist **b, t_pslist *move);
+void	insert_sort(t_pslist **a, t_pslist **b);
 
 //error and free
 void	free_list(t_pslist **a);
@@ -76,18 +84,20 @@ int		is_double(t_pslist *a, int nb);
 int		is_numeric(char *str);
 t_pslist	*last_node(t_pslist *a);
 void new_node(int node, t_pslist **list);
-int	check_stack(t_pslist **a, char **args, bool two_ac);
+int	check_list(t_pslist **a, char **args, bool two_ac);
 
 //utils
-int	size_stack(t_pslist *stack);
-int	ft_smallest(t_pslist *a);
-void	move_smallest(t_pslist **a);
-int	position_smallest(t_pslist *a, int value);
-void	choose_algo(t_pslist **a, t_pslist **b);
+int			size_list(t_pslist *list);
+t_pslist	*find_smallest(t_pslist *list);
+void		position_smallest(t_pslist *list);
+void	find_closer(t_pslist *a, t_pslist *b);
+void	init_true_false_position (t_pslist	*list);
 
 //algo utils
 void	partition_a(t_pslist **a, t_pslist **b);
-int	find_biggest(t_pslist *b);
-void	push_biggest_in_a(t_pslist **b, t_pslist **a);
-int	position_biggest(t_pslist *b, int big);
+void	move_to_a(t_pslist	**a, t_pslist **b);
+void	prepare_algo(t_pslist *a, t_pslist *b);
+void	find_cheapest_cost(t_pslist *b);
+void	cost_calcul(t_pslist *a, t_pslist *b);
+
 #endif

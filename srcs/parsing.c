@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/20 16:02:48 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:59:52 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void new_node(int node, t_pslist **list)
 	}
 }
 
-int	check_stack(t_pslist **a, char **av, bool two_ac)
+int	check_list(t_pslist **a, char **av, bool two_ac)
 {
 	int			j;
 	long		num;
