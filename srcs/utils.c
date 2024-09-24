@@ -5,13 +5,13 @@ int	size_list(t_pslist *list)
 {
 	int	i;
 
-	i = 0;
-	if (!list)
+	if (list == NULL)
 		return (0);
-	while (list != NULL)
+	i = 0;
+	while (list)
 	{
-		i++;
 		list = list->next;
+		i++;
 	}
 	return (i);
 }
@@ -23,7 +23,7 @@ t_pslist	*find_smallest(t_pslist *list)
 	t_pslist	*result;
 
 	if (list == NULL)
-		return (0);
+		return (NULL);
 	i = LONG_MAX;
 	while(list)
 	{
@@ -38,7 +38,7 @@ t_pslist	*find_smallest(t_pslist *list)
 }
 
 
-void	position_smallest(t_pslist *list)
+int	position_smallest(t_pslist *list)
 {
 	int	position;
 	int	smallest;
@@ -52,15 +52,16 @@ void	position_smallest(t_pslist *list)
 		position++;
 		list = list->next;
 	}
+	return (position);
 }
 
 void	find_closer(t_pslist *a, t_pslist *b)
 {
-	ft_printf("find_closer ok\n");
 	t_pslist	*temp_a;
-	t_pslist	*closer;
 	long		landmark;
 
+	if (b == NULL)
+		return ;
 	while(b)
 	{
 		landmark = LONG_MAX;
@@ -69,18 +70,15 @@ void	find_closer(t_pslist *a, t_pslist *b)
 		{
 			if(temp_a->nb > b->nb && temp_a->nb < landmark)
 			{
+				b->closer = temp_a;
 				landmark = temp_a->nb;
-				closer = temp_a;
-
 			}
 			temp_a = temp_a->next;
 		}
 		if (landmark == LONG_MAX)
-			{
-				b->closer = find_smallest(a);
-			}
-		else
-			b->closer = closer;
+		{
+			b->closer = find_smallest(a);
+		}
 		b = b->next;
 	}
 	return ;
@@ -88,7 +86,6 @@ void	find_closer(t_pslist *a, t_pslist *b)
 
 void	init_true_false_position (t_pslist	*list)
 {
-	ft_printf("init_true_false_position ok\n");
 	int	i;
 	int	mediane;
 
@@ -100,14 +97,10 @@ void	init_true_false_position (t_pslist	*list)
 	{
 		list->position = i;
 		if (i <= mediane)
-			{
-				list->bellow_mediane = true;
-				ft_printf("list->bellow_mediane = true\n");
-			}
+			list->bellow_mediane = true;
 		else
 		{
 			list->bellow_mediane = false;
-			ft_printf("list->bellow_mediane = false\n");
 		}
 		list = list->next;
 		i++;

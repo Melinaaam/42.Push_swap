@@ -1,5 +1,71 @@
 #include "libft.h"
 #include "push_swap.h"
+void	print_list(t_pslist *list)
+{
+	if (list == NULL)
+		return ;
+	while (list)
+	{
+		ft_putnbr(list->nb);
+		ft_putchar('\n');
+		list = list->next;
+	}
+}
+
+void	partition_a(t_pslist **a, t_pslist **b)
+{
+	int	mediane;
+	int	middle_list;
+	int moves_to_top;
+
+	ft_printf("list a : \n");
+	print_list(*a);
+	ft_printf("list b : \n");
+	print_list(*b);
+
+	mediane = find_mediane(*a, size_list(*a));
+	middle_list = size_list(*a) / 2;
+	moves_to_top = find_position(*a, mediane, pos_med(*a, mediane));
+
+	ft_printf("mediane = %d\n", mediane);
+	ft_printf("middle = %d\n", middle_list);
+	ft_printf("pos_med = %d\n", pos_med(*a, mediane));
+
+	while (middle_list > 0 && size_list(*a) > 3)
+	{
+		ft_printf("moves_to_top = %d\n", moves_to_top);
+		if (moves_to_top != 0)
+		{
+			while (moves_to_top <= middle_list && moves_to_top > 0)
+			{
+				ft_ra(a);
+				moves_to_top--;
+			}
+			while (moves_to_top > middle_list && moves_to_top < size_list(*a))
+			{
+				ft_rra(a);
+				moves_to_top++;
+			}
+			ft_printf("list a : \n");
+			print_list(*a);
+			ft_printf("list b : \n");
+			print_list(*b);
+			ft_printf("moves_to_top = %d\n", moves_to_top);
+		}
+		ft_pb(a, b);
+		mediane = find_mediane(*a, size_list(*a));
+		moves_to_top = find_position(*a, mediane, pos_med(*a, mediane));
+		ft_printf("_____________________________\n");
+		ft_printf("mediane = %d\n", mediane);
+		ft_printf("moves_to_top = %d\n", moves_to_top);
+		ft_printf("middle = %d\n", middle_list);
+		ft_printf("list a : \n");
+		print_list(*a);
+		ft_printf("list b : \n");
+		print_list(*b);
+		middle_list--;
+	}
+}
 
 void	create_tab(t_pslist *a, int **tab, int size_a)
 {
@@ -47,12 +113,8 @@ void	sort_intab(int **tab, int size_a)
 int	find_mediane(t_pslist *a, int size_a)
 {
 	int	*tab;
-	//int	i;
-	//int	j;
 	int	mediane;
 
-	//i = 0;
-	//j = 0;
 	tab = NULL;
 	create_tab(a, &tab, size_a);
 	if (tab == NULL)
@@ -101,7 +163,7 @@ int	find_position(t_pslist *a, int mediane, int pos_med)
 	{
 		return(pos2);
 	}
+	// else if (pos2 == 0 && pos1 == size_list(a))
+	// 	return (-1);
 	return (pos1);
 }
-
-//position mediane?

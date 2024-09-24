@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/23 14:08:23 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:56:34 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ typedef struct ps_list
 	struct ps_list	*next;
 	struct ps_list	*prev;
 	//struct ps_list	*content;
-	struct ps_list	*cheapest;
+	// struct ps_list	*cheapest;
 	struct ps_list	*closer;
-	int				*content;
+	// int				*content;
 	int				nb;
 	int				position;
+	int				cost;
 	bool 			min;
 	bool			bellow_mediane;
-	int				cost;
 }				t_pslist;
 
 //swap_and_push
@@ -58,11 +58,13 @@ void	ft_rrb(t_pslist **b);
 void	ft_rrr(t_pslist **a, t_pslist **b);
 
 //mediane
+void	partition_a(t_pslist **a, t_pslist **b);
 void	create_tab(t_pslist *a, int **tab, int size_a);
 void		sort_intab(int **tab, int size_a);
 int			find_mediane(t_pslist *a, int size_a);
 int			pos_med(t_pslist *a, int mediane);
 int			find_position(t_pslist *a, int mediane, int pos_med);
+// void	mediane_a_to_b(t_pslist	**a, t_pslist **b);
 
 //algos
 void	choose_algo(t_pslist **a, t_pslist **b);
@@ -89,12 +91,12 @@ int	check_list(t_pslist **a, char **args, bool two_ac);
 //utils
 int			size_list(t_pslist *list);
 t_pslist	*find_smallest(t_pslist *list);
-void		position_smallest(t_pslist *list);
+int		position_smallest(t_pslist *list);
 void	find_closer(t_pslist *a, t_pslist *b);
 void	init_true_false_position (t_pslist	*list);
 
 //algo utils
-void	partition_a(t_pslist **a, t_pslist **b);
+
 void	move_to_a(t_pslist	**a, t_pslist **b);
 void	prepare_algo(t_pslist *a, t_pslist *b);
 void	find_cheapest_cost(t_pslist *b);

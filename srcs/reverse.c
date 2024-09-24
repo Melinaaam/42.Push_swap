@@ -6,52 +6,45 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:45:43 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/13 18:43:24 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:31:29 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	ft_rra(t_pslist **a)
+static void ft_reverse_rotate(t_pslist **list)
 {
 	t_pslist	*temp;
 	t_pslist	*head;
 
-	if (*a == NULL || (*a)->next == NULL)
+	if (*list == NULL || (*list)->next == NULL)
 		return ;
-	head = *a;
-	while ((*a)->next->next)
-		*a = (*a)->next;
-	temp = (*a)->next;
-	(*a)->next = NULL;
-	(*a) = head;
-	temp->next = *a;
-	*a = temp;
+	head = *list;
+	while ((*list)->next->next)
+		*list = (*list)->next;
+	temp = (*list)->next;
+	(*list)->next = NULL;
+	(*list) = head;
+	temp->next = *list;
+	*list = temp;
+}
+
+void	ft_rra(t_pslist **a)
+{
+	ft_reverse_rotate(a);
 	ft_printf ("rra\n");
 }
 
 void	ft_rrb(t_pslist **b)
 {
-	t_pslist	*temp;
-	t_pslist	*head;
-
-	if (*b == NULL || (*b)->next == NULL)
-		return ;
-	head = *b;
-	while ((*b)->next->next)
-		*b = (*b)->next;
-	temp = (*b)->next;
-	(*b)->next = NULL;
-	(*b) = head;
-	temp->next = *b;
-	*b = temp;
+	ft_reverse_rotate(b);
 	ft_printf ("rrb\n");
 }
 
 void	ft_rrr(t_pslist **a, t_pslist **b)
 {
-	ft_rra (a);
-	ft_rrb (b);
+	ft_reverse_rotate(a);
+	ft_reverse_rotate(b);
 	ft_printf ("rrr\n");
 }
