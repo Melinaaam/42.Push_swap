@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:46:46 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/24 12:30:02 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:31:52 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-static void ft_rotate(t_pslist **list)
+static	void	ft_rotate(t_pslist **list)
 {
 	t_pslist	*temp;
 	t_pslist	*head;

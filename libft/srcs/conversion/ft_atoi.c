@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:03:09 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/14 14:12:18 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:28:22 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,3 @@ int	ft_atoi(const char *str)
 	}
 	return (nb * neg);
 }
-
-// #include <stdio.h>
-// int	main()
-// {
-// 	char	str[] = "  	-+-123456hello";
-
-// 	printf("Avec vrai fonction : \n");
-// 	printf("%d\n", atoi(str));
-
-// 	printf("Avec ma fonction : \n");
-// 	printf("%d\n", ft_atoi(str));
-
-// 	return(0);
-// }
-

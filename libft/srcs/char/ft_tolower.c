@@ -6,12 +6,11 @@
 /*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:10:35 by memotyle          #+#    #+#             */
-/*   Updated: 2024/05/25 11:31:18 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/25 17:39:31 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//convertit la lettre c en minuscule si c'est possible.
 
 int	ft_tolower(int c)
 {

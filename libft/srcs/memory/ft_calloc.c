@@ -6,54 +6,24 @@
 /*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 15:45:59 by memotyle          #+#    #+#             */
-/*   Updated: 2024/07/31 12:10:44 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/25 18:20:56 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-/*
-fonction qui alloue de la memoire dynamique a l'aide de la heap(memoire dynamique).
-diff avec malloc car elle remet a 0 la memoire allouee : elle la remplie de 0 avec bzero
-*/
+
 void	*ft_calloc(size_t n, size_t size)
 {
-	void	*ptr;//ptr pour stocker les 0
+	void	*ptr;
 	size_t	longueur;
 
 	longueur = n * size;
 	if (n != 0 && longueur / n != size)
 		return (NULL);
-	ptr = malloc(longueur);//on lui cree une place
+	ptr = malloc(longueur);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, longueur);//rempli ptr avec bzero
-	return (ptr);//retourne ptr
+	ft_bzero(ptr, longueur);
+	return (ptr);
 }
-
-
-/*#include <stdio.h>
-int	main(void)
-{
-	size_t	count = 4;
-	size_t	size = sizeof(char);
-	char	*tab = "Hey";
-
-	printf("\nlongueur  : %zu ;", count * size);
-	printf(" n  : %zu ;", count);
-	printf(" size  : %zu \n", size);
-
-	printf("\n\nTableau de char :\n");
-	printf("%s\n", tab);
-
-	tab = (char *)calloc(count, size);
-    printf("\nResultat attendu :\n");
-    printf("%s\n", tab);
-	free(tab);
-
-	tab = (char *)ft_calloc(count, size);
-	printf("\nResultat obtenu :\n");
-	printf("%s\n", tab);
-	free(tab);
-	return (0);
-}*/

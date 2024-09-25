@@ -7,7 +7,7 @@ int	ft_error(t_pslist **a, char **av, bool two_ac)
 	if (two_ac)
 		free_av(av);
 	write(2, "Error\n", 6);
-	return (0);
+	exit(EXIT_FAILURE);
 }
 
 void	free_av(char **av)
@@ -20,7 +20,7 @@ void	free_av(char **av)
 		free(av[i]);
 		i++;
 	}
-	free(av);
+	free(av - 1);
 }
 
 void	free_list(t_pslist **a)
@@ -28,10 +28,10 @@ void	free_list(t_pslist **a)
 	t_pslist	*node;
 	t_pslist	*temp;
 
-	if(a == NULL || *a == NULL)
+	if (a == NULL || *a == NULL)
 		return ;
 	node = *a;
-	while(node)
+	while (node)
 	{
 		temp = node->next;
 		free(node);

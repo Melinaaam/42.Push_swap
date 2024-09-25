@@ -6,25 +6,21 @@
 /*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:12:59 by memotyle          #+#    #+#             */
-/*   Updated: 2024/07/31 12:10:39 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/25 17:46:24 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-La  fonction  bzero() met à 0 les n premiers octets du bloc pointé par s
-(octets contenant « \0 »).
-Ne renvoi aucune valeur
-*/
+
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*ptr;//gere entier positif
+	unsigned char	*ptr;
 
-	ptr = (unsigned char *) s;//pointe vers debut memoire de s
-	while (n--)//decrement n
+	ptr = (unsigned char *) s;
+	while (n--)
 	{
-		*ptr = 0;//valeur ptr 0 car but de la fonction
-		ptr++;//avance le pointeur
+		*ptr = 0;
+		ptr++;
 	}
 }
 // #include <stdio.h>

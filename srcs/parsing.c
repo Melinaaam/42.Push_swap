@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/23 10:59:52 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:31:33 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	is_numeric(char *str)
 		i++;
 	if (str[i] == '\0')
 		return (0);
-
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
@@ -54,25 +53,21 @@ t_pslist	*last_node(t_pslist *a)
 	return (a);
 }
 
-void new_node(int node, t_pslist **list)
+void	new_node(int node, t_pslist **list)
 {
 	t_pslist	*new_node;
 	t_pslist	*last;
 
 	if (list == NULL)
 		return ;
-
 	new_node = malloc(sizeof(t_pslist));
 	if (new_node == NULL)
 	{
 		free_list(&new_node);
 		return ;
 	}
-
 	new_node->next = NULL;
 	new_node->nb = node;
-
-
 	if (*list == NULL)
 	{
 		*list = new_node;
@@ -96,9 +91,7 @@ int	check_list(t_pslist **a, char **av, bool two_ac)
 	{
 		if (!is_numeric(av[j]))
 			ft_error(a, &av[j], two_ac);
-
 		num = ft_atoi(av[j]);
-
 		if (num > INT_MAX || num < INT_MIN)
 			ft_error(a, &av[j], two_ac);
 		if (is_double(*a, num) == 1)
@@ -110,4 +103,3 @@ int	check_list(t_pslist **a, char **av, bool two_ac)
 		free_av(av);
 	return (1);
 }
-

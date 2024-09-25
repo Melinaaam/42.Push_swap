@@ -3,19 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:24:28 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/13 18:34:00 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:19:23 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*----------------------------------------LIBFT------------------------------------------------------------*/
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+
+# ifndef FD_MAX
+#  define FD_MAX 1024
+# endif
+
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
+# include <stdio.h>
 # include <string.h>
 # include <unistd.h>
 # include <stdarg.h>
@@ -75,7 +84,6 @@ typedef struct s_list
 	int				number;
 }	t_list;
 
-
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void*));
@@ -86,48 +94,16 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 
-#endif
-
-/*----------------------------------------FT_PRINTF------------------------------------------------------------*/
-
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-# include <unistd.h>
-# include <stdarg.h>
-
-
 //printf
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	ft_putnbr_base(char *base, int n);
-int	ft_putunsi_dec(unsigned int nb);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_putnbr_base(char *base, int n);
+int		ft_putunsi_dec(unsigned int nb);
 
-int	ft_attributions(va_list argument, char c);
-int	ft_printf(const char *s, ...);
-int	ft_putptr(void *ptr, char *base, int x);
-
-#endif
-/*----------------------------------------GET_NEXT_LINE---------------------------------------------------*/
-
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdio.h>
-# include <string.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-#endif
-
-# ifndef FD_MAX
-# define FD_MAX 1024
-#endif
-
+int		ft_attributions(va_list argument, char c);
+int		ft_printf(const char *s, ...);
+int		ft_putptr(void *ptr, char *base, int x);
 
 char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);

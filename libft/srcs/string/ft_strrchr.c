@@ -6,43 +6,28 @@
 /*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:19:59 by memotyle          #+#    #+#             */
-/*   Updated: 2024/07/31 12:12:17 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/25 17:58:05 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-cherche a partir de la fin ou continu de chercher meme si le caractere est trouve
-La fonction strrchr() renvoie un pointeur sur la dernière occurrence
-du caractère  c  dans la chaîne s.
-renvoit un pointeur sur le caractère correspondant,ou NULL
-*/
-
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*chr;//pointeur pour stocker l'adresse de la derniere occurence de 'c'
+	char	*chr;
 
-	chr = NULL;//remis a 0 a chaque fois que le caractere est trouve
+	chr = NULL;
 	while (*s != '\0')
 	{
-		if (*s == (char)c)//compare chaque caractere de 's' a 'c'
+		if (*s == (char)c)
 		{
-			chr = (char *)s;// si 's'='c', on stocke le resultat dans chr
+			chr = (char *)s;
 		}
-		s++;//on continu de chercher meme si c est trouve
+		s++;
 	}
-	if (c == '\0')//vérifie si le caractère recherché c est le caractère nul
+	if (c == '\0')
 	{
-		return ((char *)s);//si oui on retourne null dans 's'
+		return ((char *)s);
 	}
-	return (chr);//si ps le caractere null, on retourne ce que contient chr, meme si une occurence est trouve deux fois il renvoi la derniere
+	return (chr);
 }
-
-// #include <stdio.h>
-// int	main()
-// {
-// 	char	s[]="Hello";
-// 	printf("%s\n",ft_strrchr(s, 'e'));
-// 	return(0);
-// }

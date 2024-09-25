@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melina <melina@student.42.fr>              +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:13:12 by memotyle          #+#    #+#             */
-/*   Updated: 2024/08/13 14:55:13 by melina           ###   ########.fr       */
+/*   Updated: 2024/09/25 17:42:21 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,25 +114,3 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-
-
-// #include "get_next_line.h"
-// #include <fcntl.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-
-// int	main(void)
-// {
-// 	int fd;
-// 	char *line;
-// 	char *name = "gnl.txt";
-
-// 	fd = open(name, O_RDONLY);
-// 	line = get_next_line(fd);
-// 	printf("%s\n", line);
-// 	line = get_next_line(fd);
-// 	printf("%s\n", line);
-// 	free(line);
-// 	close(fd);
-// 	return (0);
-// }

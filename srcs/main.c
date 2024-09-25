@@ -3,16 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/24 15:02:00 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:05:54 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 #include "push_swap.h"
+
+static bool	list_sorted(t_pslist *a)
+{
+	if (a == NULL)
+		return (true);
+	while (a->next)
+	{
+		if (a->nb > a->next->nb)
+			return (false);
+		a = a->next;
+	}
+	return (true);
+}
+
+static void	choose_algo(t_pslist **a, t_pslist **b)
+{
+	int	size;
+
+	size = size_list(*a);
+	if (size == 2)
+		ft_sa(a);
+	else if (size == 3)
+		sort_three(a);
+	else
+		algo(a, b);
+}
 
 int	main(int ac, char **av)
 {

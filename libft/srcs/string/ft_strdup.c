@@ -3,45 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melina <melina@student.42.fr>              +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:27:57 by memotyle          #+#    #+#             */
-/*   Updated: 2024/08/13 14:57:06 by melina           ###   ########.fr       */
+/*   Updated: 2024/09/25 17:53:35 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-crée une copie dynamique d'une chaîne de caractères.
-1. Elle prend un argument : un pointeur vers la chaîne de caractères à copier.
-2. Elle détermine la longueur de la chaîne à copier.
-3. Elle alloue suffisamment de mémoire pour stocker une copie de la chaîne,
-y compris l'octet nul de fin de chaîne.
-4. Elle copie la chaîne dans la nouvelle zone de mémoire.
-5. Elle renvoie un pointeur vers la copie de la chaîne.
-
-Si l'allocation de mémoire échoue , `strdup` renvoie NULL.
-*/
-
 char	*ft_strdup(const char *s)
 {
-	char	*copy;//stocker la copie de la chaine
-	int		len_s;//stocker la longueur de s
-	int		i;//parcourir et compter dans la boucle
+	char	*copy;
+	int		len_s;
+	int		i;
 
-	len_s = ft_strlen((char *)s);//on calcul la longeur de s et on la stocke dans len_s
-	copy = malloc((len_s + 1) * sizeof(char));// alloue une place pour la copie, la taille est difinie avec sizeof(char) =>la taille d'un octet + (len_s+1)=>taille de s + caractere de fin
+	len_s = ft_strlen((char *)s);
+	copy = malloc((len_s + 1) * sizeof(char));
 	i = 0;
 	if (copy == 0)
 		return (NULL);
 	while (s[i])
 	{
-		copy[i] = s[i];//on copie s[i] dans copy[i]
+		copy[i] = s[i];
 		i++;
 	}
-	copy[i] = '\0';//on rajoute le caractere de fin
-	return (copy);//on retourne copy
+	copy[i] = '\0';
+	return (copy);
 }
 
 /*

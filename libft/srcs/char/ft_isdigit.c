@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:33:24 by memotyle          #+#    #+#             */
-/*   Updated: 2024/06/03 16:52:05 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:39:19 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//vérifie s’il s’agit d’un chiffre (de 0 à 9).
+
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')

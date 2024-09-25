@@ -16,16 +16,15 @@ int	size_list(t_pslist *list)
 	return (i);
 }
 
-
 t_pslist	*find_smallest(t_pslist *list)
 {
-	long	i;
+	long		i;
 	t_pslist	*result;
 
 	if (list == NULL)
 		return (NULL);
 	i = LONG_MAX;
-	while(list)
+	while (list)
 	{
 		if (list->nb < i)
 		{
@@ -36,7 +35,6 @@ t_pslist	*find_smallest(t_pslist *list)
 	}
 	return (result);
 }
-
 
 int	position_smallest(t_pslist *list)
 {
@@ -55,55 +53,45 @@ int	position_smallest(t_pslist *list)
 	return (position);
 }
 
-void	find_closer(t_pslist *a, t_pslist *b)
+void	create_tab(t_pslist *a, int **tab, int size_a)
 {
 	t_pslist	*temp_a;
-	long		landmark;
+	int			i;
 
-	if (b == NULL)
-		return ;
-	while(b)
-	{
-		landmark = LONG_MAX;
-		temp_a = a;
-		while(temp_a)
-		{
-			if(temp_a->nb > b->nb && temp_a->nb < landmark)
-			{
-				b->closer = temp_a;
-				landmark = temp_a->nb;
-			}
-			temp_a = temp_a->next;
-		}
-		if (landmark == LONG_MAX)
-		{
-			b->closer = find_smallest(a);
-		}
-		b = b->next;
-	}
-	return ;
-}
-
-void	init_true_false_position (t_pslist	*list)
-{
-	int	i;
-	int	mediane;
-
+	temp_a = a;
 	i = 0;
-	if (list == NULL)
-		return;
-	mediane = size_list(list) / 2;
-	while (list)
+	*tab = malloc(sizeof(int) * size_a);
+	if (*tab == NULL)
+		return ;
+	while (i < size_a)
 	{
-		list->position = i;
-		if (i <= mediane)
-			list->bellow_mediane = true;
-		else
-		{
-			list->bellow_mediane = false;
-		}
-		list = list->next;
+		(*tab)[i] = temp_a->nb;
+		temp_a = temp_a->next;
 		i++;
 	}
-	return ;
+}
+
+void	sort_intab(int **tab, int size_a)
+{
+	int	i;
+	int	j;
+	int	temp;
+
+	i = 0;
+	j = 0;
+	while (i < size_a - 1)
+	{
+		j = i + 1;
+		while (j < size_a)
+		{
+			if ((*tab)[i] > (*tab)[j])
+			{
+				temp = (*tab)[i];
+				(*tab)[i] = (*tab)[j];
+				(*tab)[j] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
 }

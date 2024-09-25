@@ -6,7 +6,7 @@
 /*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:07:59 by memotyle          #+#    #+#             */
-/*   Updated: 2024/08/19 18:15:59 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/25 18:29:50 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ static char	*find_words(const char *s, int start, int end)
 		start++;
 	}
 	word[i] = '\0';
-	return(word);
+	return (word);
 }
 
 static char	**rempli_tab(const char *s, char c, char **tab)
 {
 	int		place_word;
-	int 	start;
-	int 	i;
+	int		start;
+	int		i;
 
 	start = 0;
 	i = 0;
@@ -89,9 +89,8 @@ static char	**rempli_tab(const char *s, char c, char **tab)
 			i++;
 	}
 	tab[place_word] = NULL;
-	return(tab);
+	return (tab);
 }
-
 
 char	**ft_split(char const *s, char c)
 {
@@ -107,4 +106,3 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (tab);
 }
-

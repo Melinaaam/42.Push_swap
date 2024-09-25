@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:15:59 by memotyle          #+#    #+#             */
-/*   Updated: 2024/06/05 12:29:11 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:39:06 by melinamotyl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//vérifie si l'on a un caractère alphabétique.
+
 int	ft_isalpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
@@ -23,13 +23,3 @@ int	ft_isalpha(int c)
 		return (0);
 	}
 }
-/*
-#include <stdio.h>
-int	main()
-{
-	int	c;
-
-	c = c;
-	printf("%d\n", ft_isalpha(c));
-	return(0);
-} */

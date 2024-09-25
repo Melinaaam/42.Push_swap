@@ -1,69 +1,40 @@
 #include "libft.h"
 #include "push_swap.h"
-void	print_list(t_pslist *list)
-{
-	if (list == NULL)
-		return ;
-	while (list)
-	{
-		ft_putnbr(list->nb);
-		ft_putchar('\n');
-		list = list->next;
-	}
-}
+
 
 void	partition_a(t_pslist **a, t_pslist **b)
 {
 	int	mediane;
 	int	middle_list;
-	int moves_to_top;
-
-	ft_printf("list a : \n");
-	print_list(*a);
-	ft_printf("list b : \n");
-	print_list(*b);
+	int	moves_to_top;
 
 	mediane = find_mediane(*a, size_list(*a));
 	middle_list = size_list(*a) / 2;
 	moves_to_top = find_position(*a, mediane, pos_med(*a, mediane));
-
-	ft_printf("mediane = %d\n", mediane);
-	ft_printf("middle = %d\n", middle_list);
-	ft_printf("pos_med = %d\n", pos_med(*a, mediane));
-
 	while (middle_list > 0 && size_list(*a) > 3)
 	{
-		ft_printf("moves_to_top = %d\n", moves_to_top);
-		if (moves_to_top != 0)
-		{
-			while (moves_to_top <= middle_list && moves_to_top > 0)
-			{
-				ft_ra(a);
-				moves_to_top--;
-			}
-			while (moves_to_top > middle_list && moves_to_top < size_list(*a))
-			{
-				ft_rra(a);
-				moves_to_top++;
-			}
-			ft_printf("list a : \n");
-			print_list(*a);
-			ft_printf("list b : \n");
-			print_list(*b);
-			ft_printf("moves_to_top = %d\n", moves_to_top);
-		}
+		move_to_top(a, moves_to_top, middle_list);
 		ft_pb(a, b);
 		mediane = find_mediane(*a, size_list(*a));
 		moves_to_top = find_position(*a, mediane, pos_med(*a, mediane));
-		ft_printf("_____________________________\n");
-		ft_printf("mediane = %d\n", mediane);
-		ft_printf("moves_to_top = %d\n", moves_to_top);
-		ft_printf("middle = %d\n", middle_list);
-		ft_printf("list a : \n");
-		print_list(*a);
-		ft_printf("list b : \n");
-		print_list(*b);
 		middle_list--;
+	}
+}
+
+void	move_to_top(t_pslist **a, int moves_to_top, int middle)
+{
+	if (moves_to_top != 0)
+	{
+		if (moves_to_top <= middle && moves_to_top > 0)
+		{
+			ft_ra (a);
+			moves_to_top--;
+		}
+		while (moves_to_top > middle && moves_to_top < size_list(*a))
+		{
+			ft_rra(a);
+			moves_to_top++;
+		}
 	}
 }
 
@@ -77,7 +48,7 @@ void	create_tab(t_pslist *a, int **tab, int size_a)
 	*tab = malloc(sizeof(int) * size_a);
 	if (*tab == NULL)
 		return ;
-	while(i < size_a)
+	while (i < size_a)
 	{
 		(*tab)[i] = temp_a->nb;
 		temp_a = temp_a->next;
@@ -118,10 +89,10 @@ int	find_mediane(t_pslist *a, int size_a)
 	tab = NULL;
 	create_tab(a, &tab, size_a);
 	if (tab == NULL)
-			exit(EXIT_FAILURE);
-	sort_intab(&tab, size_a);
+		exit(EXIT_FAILURE);
+	sort_intab (&tab, size_a);
 	mediane = tab[size_a / 2];
-	free(tab);
+	free (tab);
 	return (mediane);
 }
 
@@ -130,7 +101,7 @@ int	pos_med(t_pslist *a, int mediane)
 	int	pos;
 
 	pos = 0;
-	while(a->nb != mediane && a->next)
+	while (a->nb != mediane && a->next)
 	{
 		a = a->next;
 		pos++;
@@ -138,17 +109,17 @@ int	pos_med(t_pslist *a, int mediane)
 	return (pos);
 }
 
-int	find_position(t_pslist *a, int mediane, int pos_med)
+int	find_position (t_pslist *a, int mediane, int pos_med)
 {
-	int	pos1;
-	int pos2;
+	int			pos1;
+	int			pos2;
 	t_pslist	*last;
 
 	if (a == NULL)
 		return (-1);
 	pos1 = 0;
 	pos2 = size_list(a) - 1;
-	while(a->nb > mediane && a->next && pos1 <= pos_med)
+	while (a->nb > mediane && a->next && pos1 <= pos_med)
 	{
 		a = a->next;
 		pos1++;
@@ -161,9 +132,7 @@ int	find_position(t_pslist *a, int mediane, int pos_med)
 	}
 	if (pos1 > pos2)
 	{
-		return(pos2);
+		return (pos2);
 	}
-	// else if (pos2 == 0 && pos1 == size_list(a))
-	// 	return (-1);
 	return (pos1);
 }
