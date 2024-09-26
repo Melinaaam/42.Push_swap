@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   reverse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:45:43 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/25 19:31:44 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/26 09:40:21 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-static void ft_reverse_rotate(t_pslist **list)
+static	void	ft_reverse_rotate(t_pslist **list)
 {
 	t_pslist	*temp;
 	t_pslist	*head;

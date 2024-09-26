@@ -1,0 +1,39 @@
+Test d'une liste vide :
+
+    Entrée : ()
+    Sortie attendue : Pas d'opérations.
+    resultat : KO idem
+
+Test d'une liste avec un seul élément :
+
+    Entrée : (5)
+    Sortie attendue : Pas d'opérations.
+    resultat : KO seg fault
+
+Test de deux éléments déjà triés :
+
+    Entrée : (2, 4)
+    Sortie attendue : Pas d'opérations.
+    resultat : OK
+
+Test de deux éléments non triés :
+
+    Entrée : (4, 2)
+    Sortie attendue : sa
+	resultat : OK
+
+Trois éléments triés :
+
+    Entrée : (1, 2, 3)
+    Sortie attendue : Pas d'opérations.
+	resultat : 
+
+Trois éléments non triés :
+
+    Entrée : (3, 1, 2)
+    Sortie attendue : ra sa rra.
+
+Cinq éléments non triés :
+
+    Entrée : (3, 2, 5, 1, 4)
+    Sortie attendue : (tu peux adapter selon l'implémentation).

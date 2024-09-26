@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 09:39:27 by memotyle          #+#    #+#             */
+/*   Updated: 2024/09/26 09:40:32 by memotyle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "push_swap.h"
 
@@ -46,7 +58,7 @@ int	position_smallest(t_pslist *list)
 	while (list)
 	{
 		if (list->nb == smallest)
-			break;
+			break ;
 		position++;
 		list = list->next;
 	}

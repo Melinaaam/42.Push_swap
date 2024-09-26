@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/25 17:05:54 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/26 17:35:34 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,21 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
+	ft_printf("av[0] = %s\n", av[0]);
+	ft_printf("av[1] = %s\n", av[1]);
 	if (ac == 1 || !av[1][0])
-		return (1);
+		return (EXIT_FAILURE);
 	else if (ac == 2)
 	{
 		av = ft_split(av[1], ' ');
-		check_list(&a, av, true);
+		ft_printf("after split : av[0] = %s\n", av[0]);
+		ft_printf("after split : ac = %d\n", ac);
+		if (av == NULL)
+			exit (EXIT_FAILURE);
 	}
-	else if (ac > 2)
-		check_list(&a, av + 1, false);
+	ft_printf("av[0] = %s\n", av[0]);
+	ft_printf("ac = %d\n", ac);
+	check_list(av + 1, ac == 2, &a);
 	if (!list_sorted(a))
 		choose_algo(&a, &b);
 	free_list(&a);

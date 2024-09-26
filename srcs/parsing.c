@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/25 19:31:33 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/26 17:30:34 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int	is_double(t_pslist *a, int nb)
+int	is_double(t_pslist *a, long nb)
 {
 	if (!a)
 		return (0);
@@ -28,20 +28,22 @@ int	is_double(t_pslist *a, int nb)
 
 int	is_numeric(char *str)
 {
+	// ft_printf("str = %s\n", str);
 	int	i;
 
 	i = 0;
-	if (str[0] == '-' || str[0] == '+')
+	if (str[0] == '+' || str[0] == '-')
 		i++;
-	if (str[i] == '\0')
-		return (0);
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
+	if (!str[i])
+		return (1);
+	while (str[i] >= '0' && str[i] <= '9')
 		i++;
-	}
-	return (1);
+	if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
+		{
+			//ft_printf("str = %s\n", str);
+			return (1);
+		}
+	return (0);
 }
 
 t_pslist	*last_node(t_pslist *a)
@@ -81,21 +83,24 @@ void	new_node(int node, t_pslist **list)
 	}
 }
 
-int	check_list(t_pslist **a, char **av, bool two_ac)
+int	check_list(char **av, bool two_ac, t_pslist **a)
 {
+	ft_printf("in check : av[0] = %s\n", av[0]);
+	ft_printf("in check : av[1] = %s\n", av[1]);
 	int			j;
 	long		num;
 
 	j = 0;
 	while (av[j])
 	{
-		if (!is_numeric(av[j]))
-			ft_error(a, &av[j], two_ac);
+		// ft_printf("av[j] = %s\n", av[j]);
+		if (is_numeric(av[j]) == 1)
+			ft_error(a, av, two_ac);
 		num = ft_atoi(av[j]);
 		if (num > INT_MAX || num < INT_MIN)
-			ft_error(a, &av[j], two_ac);
+			ft_error(a, av, two_ac);
 		if (is_double(*a, num) == 1)
-			ft_error(a, &av[j], two_ac);
+			ft_error(a, av, two_ac);
 		new_node((int)num, a);
 		j++;
 	}

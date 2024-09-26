@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:45:43 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/25 19:32:55 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/26 11:00:46 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "checker_bonus.h"
 
-static void ft_reverse_rotate(t_chlist **list)
+static	void	ft_reverse_rotate(t_chlist **list)
 {
 	t_chlist	*temp;
 	t_chlist	*head;

@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mediane.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 09:39:11 by memotyle          #+#    #+#             */
+/*   Updated: 2024/09/26 09:40:06 by memotyle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "push_swap.h"
-
 
 void	partition_a(t_pslist **a, t_pslist **b)
 {
@@ -38,49 +49,6 @@ void	move_to_top(t_pslist **a, int moves_to_top, int middle)
 	}
 }
 
-void	create_tab(t_pslist *a, int **tab, int size_a)
-{
-	t_pslist	*temp_a;
-	int			i;
-
-	temp_a = a;
-	i = 0;
-	*tab = malloc(sizeof(int) * size_a);
-	if (*tab == NULL)
-		return ;
-	while (i < size_a)
-	{
-		(*tab)[i] = temp_a->nb;
-		temp_a = temp_a->next;
-		i++;
-	}
-}
-
-void	sort_intab(int **tab, int size_a)
-{
-	int	i;
-	int	j;
-	int	temp;
-
-	i = 0;
-	j = 0;
-	while (i < size_a - 1)
-	{
-		j = i + 1;
-		while (j < size_a)
-		{
-			if ((*tab)[i] > (*tab)[j])
-			{
-				temp = (*tab)[i];
-				(*tab)[i] = (*tab)[j];
-				(*tab)[j] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
 int	find_mediane(t_pslist *a, int size_a)
 {
 	int	*tab;
@@ -109,7 +77,7 @@ int	pos_med(t_pslist *a, int mediane)
 	return (pos);
 }
 
-int	find_position (t_pslist *a, int mediane, int pos_med)
+int	find_position(t_pslist *a, int mediane, int pos_med)
 {
 	int			pos1;
 	int			pos2;

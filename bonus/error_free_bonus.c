@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_free_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 09:43:13 by memotyle          #+#    #+#             */
+/*   Updated: 2024/09/26 14:31:03 by memotyle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "checker_bonus.h"
 
@@ -6,7 +18,7 @@ int	ft_error(t_chlist **a, char **av, bool two_ac)
 	free_list(a);
 	if (two_ac)
 		free_av(av);
-	write(2, "Error\n", 6);
+	write(2, "Error1\n", 6);
 	exit(EXIT_FAILURE);
 }
 
@@ -14,14 +26,15 @@ void	free_av(char **av)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
+	if (!av)
+		return ;
 	while (av[i])
 	{
 		free(av[i]);
 		i++;
 	}
-	free(av - 1);
-	return ;
+	free(av);
 }
 
 void	free_list(t_chlist **a)
@@ -42,14 +55,14 @@ void	free_list(t_chlist **a)
 	return ;
 }
 
-void	free_checker_list(t_chlist **checker_list)
+void	free_instruction(t_chlist **instruction)
 {
 	t_chlist	*node;
 	t_chlist	*temp;
 
-	if (checker_list == NULL || *checker_list == NULL)
+	if (instruction == NULL || *instruction == NULL)
 		return ;
-	node = *checker_list;
+	node = *instruction;
 	while (node)
 	{
 		temp = node->next;
@@ -57,14 +70,12 @@ void	free_checker_list(t_chlist **checker_list)
 		free(node);
 		node = temp;
 	}
-	*checker_list = NULL;
-	return ;
 }
 
 void	free_all(t_chlist **a, t_chlist **b, t_chlist **checker_list)
 {
 	free_list(a);
 	free_list(b);
-	free_checker_list(checker_list);
+	free_instruction(checker_list);
 	exit(EXIT_FAILURE);
 }

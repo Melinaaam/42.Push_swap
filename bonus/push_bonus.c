@@ -1,50 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_bonus.c                                     :+:      :+:    :+:   */
+/*   push_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 13:46:46 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 11:00:43 by memotyle         ###   ########.fr       */
+/*   Created: 2024/09/09 13:44:53 by memotyle          #+#    #+#             */
+/*   Updated: 2024/09/26 11:00:47 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "checker_bonus.h"
 
-static	void	ft_rotate(t_chlist **list)
+void	ft_pa(t_chlist **a, t_chlist **b)
 {
 	t_chlist	*temp;
-	t_chlist	*head;
 
-	if (*list == NULL || (*list)->next == NULL)
+	if (*b == NULL)
 		return ;
-	temp = *list;
-	*list = (*list)->next;
-	head = *list;
-	temp->next = NULL;
-	while ((*list)->next)
-		*list = (*list)->next;
-	(*list)->next = temp;
-	*list = head;
+	temp = *b;
+	*b = (*b)->next;
+	temp->next = *a;
+	*a = temp;
+	ft_printf ("pa\n");
 }
 
-void	ft_ra(t_chlist **a)
+void	ft_pb(t_chlist **a, t_chlist **b)
 {
-	ft_rotate(a);
-	ft_printf ("ra\n");
-}
+	t_chlist	*temp;
 
-void	ft_rb(t_chlist **b)
-{
-	ft_rotate(b);
-	ft_printf ("rb\n");
-}
-
-void	ft_rr(t_chlist **a, t_chlist **b)
-{
-	ft_rotate(a);
-	ft_rotate(b);
-	ft_printf ("rr\n");
+	if (*a == NULL)
+		return ;
+	temp = *a;
+	*a = (*a)->next;
+	temp->next = *b;
+	*b = temp;
+	ft_printf ("pb\n");
 }
