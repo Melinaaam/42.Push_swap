@@ -6,12 +6,39 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 17:35:34 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:30:26 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+
+long	ft_atol(const char *str)
+{
+	int		i;
+	int		neg;
+	long	nb;
+
+	i = 0;
+	neg = 1;
+	nb = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		neg = -1;
+		i++;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		nb = (nb * 10) + str[i] - '0';
+		i++;
+	}
+	return (nb * neg);
+}
 
 static bool	list_sorted(t_pslist *a)
 {
@@ -46,20 +73,14 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
-	ft_printf("av[0] = %s\n", av[0]);
-	ft_printf("av[1] = %s\n", av[1]);
 	if (ac == 1 || !av[1][0])
 		return (EXIT_FAILURE);
 	else if (ac == 2)
 	{
 		av = ft_split(av[1], ' ');
-		ft_printf("after split : av[0] = %s\n", av[0]);
-		ft_printf("after split : ac = %d\n", ac);
 		if (av == NULL)
 			exit (EXIT_FAILURE);
 	}
-	ft_printf("av[0] = %s\n", av[0]);
-	ft_printf("ac = %d\n", ac);
 	check_list(av + 1, ac == 2, &a);
 	if (!list_sorted(a))
 		choose_algo(&a, &b);

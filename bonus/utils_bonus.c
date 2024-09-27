@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:43:36 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 13:58:24 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:34:04 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,11 @@ void	make_instructions(t_chlist **instruction, t_chlist **a, t_chlist **b)
 	t_chlist	*temp;
 	char		*s;
 	int			verif;
-	int			fd;
 
 	verif = 0;
-	fd = 0;
 	while (1)
 	{
-		s = get_next_line(fd);
+		s = get_next_line(0);
 		if (!s || !*s)
 			break ;
 		add_instructions(instruction, s);
@@ -92,7 +90,8 @@ void	add_instructions(t_chlist **instruction, char *s)
 	new_node->prev = NULL;
 	if (*instruction == NULL)
 		*instruction = new_node;
-	else{
+	else
+	{
 		last = last_node(*instruction);
 		last->next = new_node;
 		new_node->prev = last;

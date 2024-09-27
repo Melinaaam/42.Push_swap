@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:22:28 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/25 19:07:07 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/27 14:51:07 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

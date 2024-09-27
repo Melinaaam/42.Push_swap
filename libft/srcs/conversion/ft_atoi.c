@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:03:09 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/25 18:28:22 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/27 11:24:24 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

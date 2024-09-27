@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 17:30:34 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:57:35 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	is_double(t_pslist *a, long nb)
 
 int	is_numeric(char *str)
 {
-	// ft_printf("str = %s\n", str);
 	int	i;
 
 	i = 0;
@@ -39,10 +38,7 @@ int	is_numeric(char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 		i++;
 	if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
-		{
-			//ft_printf("str = %s\n", str);
-			return (1);
-		}
+		return (1);
 	return (0);
 }
 
@@ -85,18 +81,15 @@ void	new_node(int node, t_pslist **list)
 
 int	check_list(char **av, bool two_ac, t_pslist **a)
 {
-	ft_printf("in check : av[0] = %s\n", av[0]);
-	ft_printf("in check : av[1] = %s\n", av[1]);
 	int			j;
 	long		num;
 
 	j = 0;
 	while (av[j])
 	{
-		// ft_printf("av[j] = %s\n", av[j]);
 		if (is_numeric(av[j]) == 1)
 			ft_error(a, av, two_ac);
-		num = ft_atoi(av[j]);
+		num = ft_atol(av[j]);
 		if (num > INT_MAX || num < INT_MIN)
 			ft_error(a, av, two_ac);
 		if (is_double(*a, num) == 1)

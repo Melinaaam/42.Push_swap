@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:43:30 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 17:25:01 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:32:42 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void		move_to_top(t_pslist **a, int moves_to_top, int middle);
 int			find_mediane(t_pslist *a, int size_a);
 int			pos_med(t_pslist *a, int mediane);
 int			find_position(t_pslist *a, int mediane, int pos_med);
+long		ft_atol(const char *str);
 
 #endif

@@ -53,7 +53,7 @@ clean:
 	@echo "🧹 Clean Over ! 🧹"
 
 fclean: clean
-	@rm -f $(NAME) $(BONUS)
+	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean --no-print-directory
 	@echo "🧼 All Clean Over !!! 🧼"
 

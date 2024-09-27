@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 08:54:03 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 09:03:56 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:29:39 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,13 @@
 
 static	void	ft_swap(t_pslist **list)
 {
-	t_pslist	*temp;
-	t_pslist	*head;
-
-	if (*list == NULL || (*list)->next == NULL)
-		return ;
-	temp = *list;
 	*list = (*list)->next;
-	head = *list;
-	temp->next = NULL;
-	while ((*list)->next)
-		*list = (*list)->next;
-	(*list)->next = temp;
-	*list = head;
+	(*list)->prev->prev = *list;
+	(*list)->prev->next = (*list)->next;
+	if ((*list)->next)
+		(*list)->next->prev = (*list)->prev;
+	(*list)->next = (*list)->prev;
+	(*list)->prev = NULL;
 }
 
 void	ft_sa(t_pslist **a)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melinamotylewski <melinamotylewski@stud    +#+  +:+       +#+        */
+/*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:24:28 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/25 18:19:23 by melinamotyl      ###   ########.fr       */
+/*   Updated: 2024/09/27 11:58:15 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 	struct s_list	*prev;
-	// int				*nb;
 	int				number;
 }	t_list;
 

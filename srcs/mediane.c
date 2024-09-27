@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:39:11 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 09:40:06 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:31:37 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,38 @@
 void	partition_a(t_pslist **a, t_pslist **b)
 {
 	int	mediane;
-	int	middle_list;
-	int	moves_to_top;
+	int size = size_list(*a);
 
+	if (size <= 3)
+		return (sort_three(a));
 	mediane = find_mediane(*a, size_list(*a));
-	middle_list = size_list(*a) / 2;
-	moves_to_top = find_position(*a, mediane, pos_med(*a, mediane));
-	while (middle_list > 0 && size_list(*a) > 3)
+	while (size)
 	{
-		move_to_top(a, moves_to_top, middle_list);
-		ft_pb(a, b);
-		mediane = find_mediane(*a, size_list(*a));
-		moves_to_top = find_position(*a, mediane, pos_med(*a, mediane));
-		middle_list--;
+		if ((*a)->nb > mediane)
+			ft_pb(a, b);
+		else
+			ft_ra(a);
+		size--;
 	}
+	partition_a(a, b);
 }
 
-void	move_to_top(t_pslist **a, int moves_to_top, int middle)
-{
-	if (moves_to_top != 0)
-	{
-		if (moves_to_top <= middle && moves_to_top > 0)
-		{
-			ft_ra (a);
-			moves_to_top--;
-		}
-		while (moves_to_top > middle && moves_to_top < size_list(*a))
-		{
-			ft_rra(a);
-			moves_to_top++;
-		}
-	}
-}
+// void	move_to_top(t_pslist **a, int moves_to_top, int middle)
+// {
+// 	if (moves_to_top != 0)
+// 	{
+// 		if (moves_to_top <= middle && moves_to_top > 0)
+// 		{
+// 			ft_ra(a);
+// 			moves_to_top--;
+// 		}
+// 		while (moves_to_top > middle && moves_to_top < size_list(*a))
+// 		{
+// 			ft_rra(a);
+// 			moves_to_top++;
+// 		}
+// 	}
+// }
 
 int	find_mediane(t_pslist *a, int size_a)
 {

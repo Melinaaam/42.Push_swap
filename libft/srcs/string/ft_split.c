@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:07:59 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 15:23:49 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:12:59 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	**rempli_tab(const char *s, char c, char **tab)
 
 	start = 0;
 	i = 0;
-	place_word = 0;
+	place_word = 1;
 	while (s[i])
 	{
 		if (s[i] != c)
@@ -98,9 +98,13 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	tab = malloc(sizeof (char *) * (count_words(s, c) + 1));
+	tab = malloc(sizeof (char *) * (count_words(s, c) + 2));
 	if (!tab)
 		return (NULL);
+	tab[0] = malloc(sizeof(char));
+	if (!tab[0])
+		return (NULL);
+	tab[0][0] = '\0';
 	tab = rempli_tab(s, c, tab);
 	if (!tab)
 		return (NULL);

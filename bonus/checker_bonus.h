@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:41:51 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 14:04:10 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:24:45 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,8 @@ void		make_instructions(t_chlist **instruction, t_chlist **a, t_chlist **b);
 void		add_instructions(t_chlist **instruction, char *s);
 char		*recup_instruction(char *s, char c);
 
+char		*gnl(int fd);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char *s1, char *s2);
+int	ft_strlen(char *str);
 #endif

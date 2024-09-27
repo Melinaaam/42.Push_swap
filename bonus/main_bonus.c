@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:20:22 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 14:04:29 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:09:36 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 		if (av == NULL)
 			exit (EXIT_FAILURE);
 	}
-	check_list(&a, av + 1, false);
+	check_list(&a, av + 1, ac == 2);
 	instruction = NULL;
 	make_instructions(&instruction, &a, &b);
 	if (list_sorted(&a) == true && b == NULL)

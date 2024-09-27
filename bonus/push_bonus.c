@@ -1,40 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_bonus.c                                       :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:44:53 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 11:00:47 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:26:44 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "checker_bonus.h"
+#include "push_swap.h"
 
-void	ft_pa(t_chlist **a, t_chlist **b)
+static void	push(t_pslist **a, t_pslist **b)
 {
-	t_chlist	*temp;
+	t_pslist	*push_node;
 
-	if (*b == NULL)
-		return ;
-	temp = *b;
-	*b = (*b)->next;
-	temp->next = *a;
-	*a = temp;
-	ft_printf ("pa\n");
-}
-
-void	ft_pb(t_chlist **a, t_chlist **b)
-{
-	t_chlist	*temp;
-
+	push_node = *a;
 	if (*a == NULL)
 		return ;
-	temp = *a;
 	*a = (*a)->next;
-	temp->next = *b;
-	*b = temp;
-	ft_printf ("pb\n");
+	if (*a)
+		(*a)->prev = NULL;
+	if (*b == NULL)
+	{
+		*b = push_node;
+		push_node->next = NULL;
+	}
+	else
+	{
+		push_node->next = *b;
+		push_node->next->prev = push_node;
+		*b = push_node;
+	}
+}
+
+void	ft_pa(t_pslist **a, t_pslist **b)
+{
+	push(b, a);
+	write(1, "pa\n", 3);
+}
+
+void	ft_pb(t_pslist **a, t_pslist **b)
+{
+	push(a, b);
+	write(1, "pb\n", 3);
 }
