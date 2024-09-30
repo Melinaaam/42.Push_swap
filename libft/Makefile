@@ -33,8 +33,6 @@ SRCS = $(addprefix $(CHAR_DIR),$(CHAR_SRCS)) \
 		$(addprefix $(PRINTF_DIR),$(PRINTF_SRCS)) \
 		$(addprefix $(GNL_DIR),$(GNL_SRCS))
 
-
-#OBJS = $(addprefix $(OBJS_DIR)/,$(patsubst %.c,%.o,$(notdir $(SRCS))))
 OBJS = $(addprefix $(OBJS_DIR),$(SRCS:.c=.o))
 
 DEPS = $(OBJS:.o=.d)
@@ -46,13 +44,13 @@ CFLAGS = -Wall -Wextra -Werror -I${INC_DIR} -MMD
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-		@ar rcs ${NAME} ${OBJS}
+	@ar rcs ${NAME} ${OBJS}
 
 clean:
-		@rm -rf ${OBJS_DIR}
+	@rm -rf ${OBJS_DIR}
 
 fclean: clean
-		@rm -rf ${NAME}
+	@rm -rf ${NAME}
 
 re: fclean ${NAME}
 

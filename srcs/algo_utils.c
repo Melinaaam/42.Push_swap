@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:38:49 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/26 09:38:52 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:52:06 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,11 @@ void	cost_calcul(t_pslist *a, t_pslist *b)
 {
 	int	len_lst_a;
 	int	len_lst_b;
+	int	i;
 
 	if (b == NULL)
 		return ;
+	i = find_mediane(b, size_list(b));
 	len_lst_a = size_list(a);
 	len_lst_b = size_list(b);
 	while (b)

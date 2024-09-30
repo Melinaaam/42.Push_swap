@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:22:28 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/27 23:10:10 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:52:17 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,18 @@ void	prepare_algo(t_pslist *a, t_pslist *b)
 	cost_calcul(a, b);
 	find_cheapest_cost(b);
 }
+
 t_pslist	*find_bigger(t_pslist *a)
 {
 	t_pslist	*bigger;
-	long	i;
 
-	i = INT_MIN;
-	if (a == NULL)
+	if (!a)
 		return (NULL);
+	bigger = a;
 	while (a)
 	{
-		if (i < a->nb)
-		{
+		if (a->nb > bigger->nb)
 			bigger = a;
-			i = a->nb;
-		}
 		a = a->next;
 	}
 	return (bigger);
@@ -46,8 +43,7 @@ void	sort_three(t_pslist **a)
 	t_pslist	*bigger;
 
 	bigger = find_bigger(*a);
-
-	if (bigger == (*a))
+	if (bigger == *a)
 		ft_ra(a);
 	else if (bigger == (*a)->next)
 		ft_rra(a);
@@ -77,9 +73,7 @@ void	algo(t_pslist **a, t_pslist **b)
 {
 	t_pslist	*smallest;
 
-	while (size_list(*a) > 3)
-		partition_a(a, b);
-	sort_three(a);
+	partition_a(a, b);
 	while (*b)
 	{
 		prepare_algo (*a, *b);

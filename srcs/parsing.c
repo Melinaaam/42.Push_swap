@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:38:26 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/27 11:57:35 by memotyle         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:13:48 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,23 @@ void	new_node(int node, t_pslist **list)
 	}
 }
 
+static	int	check_digit(char *arg)
+{
+	int i = 0;
+
+	if (arg[i] == '-')
+		i++;
+	else if (arg[i] == '+')
+		i++;
+	while (arg[i])
+	{
+		if (ft_isdigit(arg[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	check_list(char **av, bool two_ac, t_pslist **a)
 {
 	int			j;
@@ -88,6 +105,8 @@ int	check_list(char **av, bool two_ac, t_pslist **a)
 	while (av[j])
 	{
 		if (is_numeric(av[j]) == 1)
+			ft_error(a, av, two_ac);
+		if (check_digit(av[j]) == 0)
 			ft_error(a, av, two_ac);
 		num = ft_atol(av[j]);
 		if (num > INT_MAX || num < INT_MIN)
