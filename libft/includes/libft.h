@@ -6,7 +6,7 @@
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:24:28 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/27 22:31:11 by memotyle         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:19:50 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ int		ft_attributions(va_list argument, char c);
 int		ft_printf(const char *s, ...);
 int		ft_putptr(void *ptr, char *base, int x);
 
-char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);
-char	*ft_strdup_gnl(char *s);
 
 #endif

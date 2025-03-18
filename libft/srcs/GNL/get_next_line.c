@@ -5,13 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: memotyle <memotyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 11:13:12 by memotyle          #+#    #+#             */
-/*   Updated: 2024/09/27 12:02:25 by memotyle         ###   ########.fr       */
+/*   Created: 2025/03/18 09:48:11 by memotyle          #+#    #+#             */
+/*   Updated: 2025/03/18 10:40:51 by memotyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** Libère la mémoire associée au pointeur 'storage'
+** et remet ce dernier à NULL pour éviter toute fuite de mémoire.
+*/
 static char	*free_storage(char **storage)
 {
 	if (*storage)
@@ -22,46 +26,42 @@ static char	*free_storage(char **storage)
 	return (NULL);
 }
 
-static int	join_storage_and_buffer(char **storage, char *buffer)
+/*
+** Concatène le contenu déjà présent dans 'storage'
+** avec celui du 'buffer', puis met à jour 'storage' en libérant
+** l'ancien contenu.
+*/
+static void	append_to_storage(char **storage, char *buffer)
 {
 	char	*temp;
 
-	if (!*storage)
-	{
-		*storage = ft_strdup_gnl(buffer);
-		if (!*storage)
-			return (0);
-	}
-	else
-	{
-		temp = ft_strjoin(*storage, buffer);
-		if (!temp)
-			return (0);
-		free_storage(storage);
-		*storage = temp;
-	}
-	return (1);
+	temp = ft_strjoin(*storage, buffer);
+	free_storage(storage);
+	*storage = temp;
 }
 
-static char	*generate_line(char **storage)
+/*
+** Récupère la première ligne (jusqu'au caractère '\n')
+** à partir de 'storage' et renvoie cette ligne. Elle met également
+** à jour le contenu de 'storage' en supprimant la partie extraite.
+*/
+static char	*extract_line(char **storage)
 {
-	size_t	len;
+	size_t	length;
 	char	*line;
 	char	*temp;
 
-	if (!*storage || **storage == '\0')
-		return (NULL);
 	if (ft_strchr(*storage, '\n'))
-		len = ft_strchr(*storage, '\n') - *storage + 1;
+		length = ft_strchr(*storage, '\n') - *storage + 1;
 	else
-		len = ft_strlen(*storage);
-	line = malloc((len + 1) * sizeof(char));
+		length = ft_strlen(*storage);
+	line = malloc((length + 1) * sizeof(char));
 	if (!line)
 		return (NULL);
-	ft_strlcpy(line, *storage, len + 1);
+	ft_strlcpy(line, *storage, length + 1);
 	if (ft_strchr(*storage, '\n'))
 	{
-		temp = ft_strdup_gnl(ft_strchr(*storage, '\n') + 1);
+		temp = ft_strjoin(ft_strchr(*storage, '\n') + 1, "");
 		free_storage(storage);
 		*storage = temp;
 	}
@@ -70,47 +70,37 @@ static char	*generate_line(char **storage)
 	return (line);
 }
 
-static int	ft_read(int fd, char **storage)
+/*
+** Cette fonction lit une ligne à partir du descripteur de fichier 'fd'
+** en utilisant un tampon de taille BUFFER_SIZE. Les données sont stockées
+** dans 'storage' afin de pouvoir reconstruire la ligne sur plusieurs
+** appels si nécessaire.
+*/
+char	*get_next_line(int fd)
 {
-	char	*buffer;
-	int		bytes_read;
+	char		*buffer;
+	static char	*storage = NULL;
+	ssize_t		bytes_read;
 
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX - 1)
+		return (NULL);
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
-		return (-1);
+		return (NULL);
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	while (bytes_read > 0)
 	{
 		buffer[bytes_read] = '\0';
-		if (!join_storage_and_buffer(storage, buffer))
-		{
-			free(buffer);
-			return (-1);
-		}
-		if (ft_strchr(buffer, '\n'))
+		if (!storage)
+			storage = ft_strjoin("", buffer);
+		else
+			append_to_storage(&storage, buffer);
+		if (ft_strchr(storage, '\n'))
 			break ;
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
 	free(buffer);
-	return (bytes_read);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*storage = NULL;
-	char		*line;
-	int			bytes_read;
-
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX - 1)
-		return (NULL);
-	bytes_read = ft_read(fd, &storage);
-	if (bytes_read < 0 || (bytes_read == 0 && (!storage || !*storage)))
+	if (bytes_read == -1 || !storage || !*storage)
 		return (free_storage(&storage));
-	line = generate_line(&storage);
-	if (!line || *line == '\0')
-	{
-		free(line);
-		return (free_storage(&storage));
-	}
-	return (line);
+	return (extract_line(&storage));
 }
